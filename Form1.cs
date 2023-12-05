@@ -76,7 +76,7 @@ namespace PS5CodeReader
             client.BaseAddress = new Uri("https://raw.githubusercontent.com/");
             client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)");
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            var response = await client.GetAsync("amoamare/ps5codereader/main/errorcodes.json");
+            var response = await client.GetAsync("amoamare/PS5CodeReader/master/ErrorCodes.json");
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<PS5ErrorCodeList>();
         }
