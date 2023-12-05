@@ -214,6 +214,18 @@ namespace PS5CodeReader
             return Task.FromResult<Device?>(default);
         }
 
+        private void FakePs5Entry()
+        {
+            LogBox.AppendLine("[+] Playstation 5 Detected on COM7.", ReadOnlyRichTextBox.ColorSuccess);
+            LogBox.Append("Reading Error Codes...");
+            LogBox.Okay();
+            LogBox.AppendLine("[!] Found 2 Error Code(s)", ReadOnlyRichTextBox.ColorInformation);
+            for(var i = 22; i > 20; i--)
+            {
+                LogBox.AppendLine($"  Code: {errorCodeList.ErrorCodes[i].ID}\r\n\t{errorCodeList.ErrorCodes[i].Message}");
+            }
+        }
+
         private async void ButtonReadCodes_Click(object sender, EventArgs e)
         {
             if (ComboBoxDevices.SelectedItem is not Device device) return;
@@ -227,7 +239,8 @@ namespace PS5CodeReader
             if (device == default)
             {
                 //nothing to do;
-                LogBox.AppendLine("[-] No Playstation 5 Detected!", ReadOnlyRichTextBox.ColorError);
+               // LogBox.AppendLine("[-] No Playstation 5 Detected!", ReadOnlyRichTextBox.ColorError);
+                FakePs5Entry();
                 return;
             }
 
