@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.IO.Ports;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PS5CodeReader
 {
@@ -49,10 +45,11 @@ namespace PS5CodeReader
         {
             byte[] data = new byte[serialPort.BytesToRead];
             serialPort.Read(data, 0, data.Length);
+            
             data.ToList().ForEach(b => recievedData.Enqueue(b));
             ProcessData();
             //raise event here
-            LineReceived?.Invoke(this, new LineReceivedEventArgs("some line data"));
+            LineReceived?.Invoke(this, new LineReceivedEventArgs(Encoding.UTF8.GetString(data)));
         }
         private void ProcessData()
         {
@@ -65,6 +62,11 @@ namespace PS5CodeReader
         public void Dispose()
         {
             serialPort?.Dispose();
+        }
+
+        public void Write(string str)
+        {
+            serialPort.WriteLine(str);
         }
     }
 }

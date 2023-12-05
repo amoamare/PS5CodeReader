@@ -29,29 +29,21 @@
         private void InitializeComponent()
         {
             ButtonReadCodes = new Button();
-            textBox1 = new TextBox();
             ButtonReloadErrorCodes = new Button();
             ComboBoxDevices = new ComboBox();
             label1 = new Label();
+            LogBox = new ReadOnlyRichTextBox();
             SuspendLayout();
             // 
             // ButtonReadCodes
             // 
-            ButtonReadCodes.Location = new Point(688, 531);
+            ButtonReadCodes.Location = new Point(688, 31);
             ButtonReadCodes.Name = "ButtonReadCodes";
             ButtonReadCodes.Size = new Size(94, 29);
             ButtonReadCodes.TabIndex = 0;
             ButtonReadCodes.Text = "Read Codes";
             ButtonReadCodes.UseVisualStyleBackColor = true;
             ButtonReadCodes.Click += ButtonReadCodes_Click;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(11, 112);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(671, 448);
-            textBox1.TabIndex = 1;
             // 
             // ButtonReloadErrorCodes
             // 
@@ -82,15 +74,25 @@
             label1.TabIndex = 4;
             label1.Text = "Serial Devices (UART)";
             // 
+            // LogBox
+            // 
+            LogBox.Location = new Point(12, 66);
+            LogBox.Name = "LogBox";
+            LogBox.ReadOnly = true;
+            LogBox.Size = new Size(670, 494);
+            LogBox.TabIndex = 5;
+            LogBox.TabStop = false;
+            LogBox.Text = "";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(794, 572);
+            Controls.Add(LogBox);
             Controls.Add(label1);
             Controls.Add(ComboBoxDevices);
             Controls.Add(ButtonReloadErrorCodes);
-            Controls.Add(textBox1);
             Controls.Add(ButtonReadCodes);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
@@ -103,9 +105,9 @@
         #endregion
 
         private Button ButtonReadCodes;
-        private TextBox textBox1;
         private Button ButtonReloadErrorCodes;
         private ComboBox ComboBoxDevices;
         private Label label1;
+        private ReadOnlyRichTextBox LogBox;
     }
 }

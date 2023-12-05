@@ -3,6 +3,10 @@
   "Description": "Updated core json to include revision and description of changes",
   "ErrorCodes": [
     {
+      "ID": "FFFFFFFF",
+      "Message": "No Errors"
+    },
+    {
       "ID": "80000001",
       "Message": "Overheat or Init APU Error"
     },
