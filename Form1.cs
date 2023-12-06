@@ -4,6 +4,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Net.Http.Headers;
 using System.Text.Json;
+using Amosoft.IO.Port;
 
 namespace PS5CodeReader
 {
@@ -229,7 +230,7 @@ namespace PS5CodeReader
         private async void ButtonReadCodes_Click(object sender, EventArgs e)
         {
             if (ComboBoxDevices.SelectedItem is not Device device) return;
-            var autoDetect = device.FriendlyName.StartsWith(StrAuto, StringComparison.InvariantCultureIgnoreCase);
+            var autoDetect = device.Port.StartsWith(StrAuto, StringComparison.InvariantCultureIgnoreCase);
             if (autoDetect)
             {
                 //todo: auto detect device and return it;
@@ -241,46 +242,48 @@ namespace PS5CodeReader
                 //nothing to do;
                // LogBox.AppendLine("[-] No Playstation 5 Detected!", ReadOnlyRichTextBox.ColorError);
                 FakePs5Entry();
-                return;
-            }
+                return;           }
 
-            sp1.LineReceived += new LineReceivedEventHandler(sp1_LineReceived);
-            sp1.Abrir(device.Port, 115200);
-            sp1.Write("AT+DEVCONINFO");
-
-
-
-
-
-
-            return;
-            var devices = SerialPort.SelectSerial();
-            var port = devices.First().Port;
             using var serial = new SerialPort();
-            serial.PortName = port;
-            serial.BaudRate = 115200;
+            serial.PortName = device.Port;
             serial.Open();
-            serial.ReadTimeout = 1000;
+            serial.ReadTimeout = 2000;
             string line = string.Empty;
-            //   textBox1.AppendText("Waiting for ps5");
-            while (string.IsNullOrEmpty(line))
+            do
             {
                 try
                 {
                     line = serial.ReadLine();
+                    LogBox.AppendLine(line);
+                    break;
                 }
-                catch { }
-
-                //      textBox1.AppendText(".");
-            }
-
-
-            //    textBox1.AppendText(line);
-            //      Thread.Sleep(1000);
+                catch
+                {
+                    serial.SendBreak();
+                    line = serial.ReadLine();
+                    LogBox.AppendLine(line);
+                    break;
+                }
+            } while (true);
             serial.Write("errlog 0");
-            serial.ReadTimeout = 1000;
-            //   textBox1.AppendText(serial.ReadLine());
-            //     textBox1.AppendText(serial.ReadLine());
+            line = string.Empty;
+            do
+            {
+                try
+                {
+                    line = serial.ReadLine();
+                    LogBox.AppendLine(line);
+                    break;
+                }
+                catch
+                {
+                    serial.SendBreak();
+                    line = serial.ReadLine();
+                    LogBox.AppendLine(line);
+                    break;
+                }
+            } while (true);
+
         }
 
         private async void ButtonReloadErrorCodes_Click(object sender, EventArgs e)

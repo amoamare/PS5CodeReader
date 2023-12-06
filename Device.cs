@@ -15,23 +15,22 @@ namespace PS5CodeReader
         internal int VendorId { get; }
         internal string DeviceParent { get; }
         internal string DeviceSerialNumber { get; }
-        internal Device(string port, string deviceDescription)
+        internal Device(string port, string friendlyName)
         {
             Port = port;
-            FriendlyName = deviceDescription;
+            FriendlyName = friendlyName;
         }
 
 
-        internal Device(string port, string deviceDescription, string deviceLocationPath) :this(port, deviceDescription)
+        internal Device(string port, string friendlyName, string deviceLocationPath) :this(port, friendlyName)
         {
             DeviceLocationPath = deviceLocationPath;
         }
 
-        internal Device(string port, string deviceDescription, string instanceId, string deviceLocationPath, string deviceParent) : this(port, deviceDescription, deviceLocationPath)
+        internal Device(string port, string friendlyName, string instanceId, string deviceLocationPath, string deviceParent) : this(port, friendlyName, deviceLocationPath)
         {
             InstanceId = instanceId;
             DeviceParent = deviceParent;
-            //USB\\VID_04E8&PID_6860\\4200BF9BE4B315BF
             var split = DeviceParent.Split('\\');
             if (split != null && split.Length > 0)
                 DeviceSerialNumber = split.LastOrDefault();
@@ -40,7 +39,7 @@ namespace PS5CodeReader
 
         public override string ToString()
         {
-            return $"{FriendlyName} ({Port})";
+            return FriendlyName;
         }
     }
 }

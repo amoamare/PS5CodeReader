@@ -11,10 +11,72 @@ namespace PS5CodeReader
 {
     internal class SerialPort : System.IO.Ports.SerialPort
     {
+        private static IEnumerable<int> BaudRates => new[]
+        {
+            268435450,
+            921600,
+            460800,
+            256000,
+            230400,
+            153600,
+            128000,
+            115200,
+            57600,
+            56000,
+            38400,
+            28800,
+            19200,
+            14400,
+            9600,
+            4800,
+            2400,
+            1200,
+            600,
+            300,
+            110
+        };
+        
+        internal new void Open()
+        {            
+            foreach (var b in BaudRates)
+            {
+                BaudRate = b;
+                try
+                {
+                    base.Open();
+                }
+                catch (ArgumentOutOfRangeException ex) when (ex != null && ex.ParamName != null && ex.ParamName.ToLowerInvariant().Contains("baudrate"))
+                {
+                    var value = new string(ex.Message.Where(char.IsDigit).ToArray());
+                    if (int.TryParse(value, out var i))
+                    {
+                        BaudRate = i;
+                        try
+                        {
+                            base.Open();
+                        }
+                        catch
+                        {
+                            continue;
+                        }
+                    }
+                }
+                catch (IOException ex) when (ex.Message.ToLowerInvariant().Contains("the parameter is incorrect")) 
+                {
+                    if (IsOpen)
+                        break;
+                    continue;
+                }
+
+                if (IsOpen)
+                    break;
+            }
+        }
+
         internal static IEnumerable<Device> SelectSerial(bool isSorted = true, Func<Device, bool>? filter = null)
         {
             var guid = GetGuidFromClassName(@"Ports");
-            var autoDevice = new Device("Detect Device Automatically", "Auto");
+            var autoDevice = new Device("Auto", "Detect Device Automatically (Auto)");
             var deviceList = new List<Device>();
             deviceList.AddRange(GetDeviceByGuid(guid, filter));
             if (isSorted)
@@ -38,10 +100,12 @@ namespace PS5CodeReader
                 var devices = new List<Device>();
                 SetupDiEnumDeviceInfo(hDevInfo).ToList()?.ForEach(hDevInfoData =>
                 {
-                    var flag = GetDeviceName(hDevInfo, hDevInfoData, out var name);
-                  //  if (flag) return;
-                     GetDeviceDescription(hDevInfo, hDevInfoData, out var description);
-                    devices.Add(new Device(name, description));
+                    var name = GetDeviceName(hDevInfo, hDevInfoData);
+                    if (string.IsNullOrEmpty(name)) return;
+                    var description = GetDeviceDescription(hDevInfo, hDevInfoData);
+                    var friendlyName =  GetDeviceFriendlyName(hDevInfo, hDevInfoData);
+                    var instancePath = GetDeviceInstanceId(hDevInfo, hDevInfoData);
+                    devices.Add(new Device(name, friendlyName));
 
                 });
                 return devices;
@@ -55,120 +119,65 @@ namespace PS5CodeReader
 
         internal static Guid GetGuidFromClassName(string name)
         {
-            var guidArray = new Guid[20];
-            var status = SetupDiClassGuidsFromName(name, guidArray, 20, out var size);
-            if (status)
-            {
-                if (1 >= size) return guidArray.First();
-                guidArray = new Guid[size];
-                SetupDiClassGuidsFromName(name, guidArray, size, out size);
-                if (size >= 1) return guidArray.First();
-            }
-            else
-            {
-                // throw new Exception("Failed to get device information set for the COM ports");
-            }
-            return Guid.Empty;
+            var guidArray = Array.Empty<Guid>();
+            var flag = SetupDiClassGuidsFromName(name, guidArray, 0, out var requiredSize);
+            if (!flag && requiredSize <= 0) return guidArray.FirstOrDefault();
+            Array.Resize(ref guidArray, (int)requiredSize);
+            if (guidArray.Length < 1) return guidArray.FirstOrDefault();
+            SetupDiClassGuidsFromName(name, guidArray, (uint)guidArray.Length, out _);
+            return guidArray.FirstOrDefault();
         }
 
-        internal static string GetClassNameFromGuid(Guid guid)
+        private static string? GetDeviceName(SafeHDEVINFO hDevInfo, SP_DEVINFO_DATA hDevInfoData)
         {
-            var size = 0;
-            SetupDiClassNameFromGuid(guid, out var className);
-            return className;
-        }
-
-        private static bool GetDeviceName(SafeHDEVINFO hDevInfo, SP_DEVINFO_DATA deviceInfoData, out string? name)
-        {
-            name = null;
-            const string portName = @"PortName";
-            var hDeviceRegistryKey = SetupDiOpenDevRegKey(hDevInfo, deviceInfoData, DICS_FLAG.DICS_FLAG_GLOBAL, 0, DIREG.DIREG_DEV, RegistryRights.QueryValues);
-            if (hDeviceRegistryKey.IsInvalid)
-            {
-                // Debug.WriteLine("Failed to open a registry key for device-specific configuration information");
-                return false;
-            }
+            const string name = @"PortName";
+            var ptrRegistryKey = SetupDiOpenDevRegKey(hDevInfo, hDevInfoData, DICS_FLAG.DICS_FLAG_GLOBAL, 0u, DIREG.DIREG_DEV, RegistryRights.QueryValues);
+            if (ptrRegistryKey.IsInvalid)
+                return null;
             try
             {
-                using var mem = new SafeHGlobalHandle(1024);
-                var memSz = (uint)mem.Size;
-                RegQueryValueEx(hDeviceRegistryKey, portName, default, out _, mem, ref memSz);
-                var success = RegQueryValueEx(hDeviceRegistryKey, portName, default, out _, mem, ref memSz);
-                if (success == Win32Error.ERROR_SUCCESS)
-                {
-                    name = mem.ToString(-1, CharSet.Auto);
-                    return true;
-                }
-                return false;
+                var size = 0u;
+                RegQueryValueEx(ptrRegistryKey, name, nint.Zero, out _, nint.Zero, ref size);
+                using var mem = new SafeHGlobalHandle(size);
+                var flag = RegQueryValueEx(ptrRegistryKey, name, nint.Zero, out _, mem, ref size);
+                return flag == Win32Error.ERROR_SUCCESS ? mem.ToString(-1, CharSet.Auto) : null;
+            }
+            catch
+            {
+                return null;
             }
             finally
             {
-                RegCloseKey(hDeviceRegistryKey);
+                RegCloseKey(ptrRegistryKey);
             }
         }
-        private static string GetDeviceDescription(SafeHDEVINFO hDevInfo, SP_DEVINFO_DATA hDevInfoData, out string? description)
+
+        private static string? GetDeviceDescription(SafeHDEVINFO hDevInfo, SP_DEVINFO_DATA hDevInfoData)
         {
-            GetValue(hDevInfo, hDevInfoData, SPDRP.SPDRP_DEVICEDESC, out object value);
-            description = value.ToString();
-            return description;
+            SetupDiGetDeviceRegistryProperty(hDevInfo, hDevInfoData, SPDRP.SPDRP_DEVICEDESC, out _, nint.Zero, 0u, out var size);
+            using var mem = new SafeHGlobalHandle(size);
+            var flag = SetupDiGetDeviceRegistryProperty(hDevInfo, hDevInfoData, SPDRP.SPDRP_DEVICEDESC, out _, mem, mem.Size, out _);
+            return flag ? mem.ToString(-1, CharSet.Auto) : string.Empty;
 
         }
 
-        private static Win32Error GetValue(SafeHDEVINFO hDevInfo, SP_DEVINFO_DATA hDevInfoData, SPDRP propKey, out object value)
+        private static string? GetDeviceFriendlyName(SafeHDEVINFO ptr, SP_DEVINFO_DATA ptrDevInfo)
         {
-            value = null;
-            if (!SetupDiGetDeviceRegistryProperty(hDevInfo, hDevInfoData, propKey, out _, default, 0, out var bufSz))
-            {
-                if (bufSz == 0)
-                    return Win32Error.ERROR_NOT_FOUND;
-                using var mem = new SafeCoTaskMemHandle(bufSz);
-                if (!SetupDiGetDeviceRegistryProperty(hDevInfo, hDevInfoData, propKey, out var propType, mem, mem.Size, out bufSz))
-                    return Win32Error.GetLastError();
-                value = GetRegValue(propKey, mem, propType);
-            }
-            return Win32Error.ERROR_SUCCESS;
+            SetupDiGetDeviceRegistryProperty(ptr, ptrDevInfo, SPDRP.SPDRP_FRIENDLYNAME, out _, nint.Zero, 0u, out var size);
+            using var mem = new SafeHGlobalHandle(size);
+            var flag = SetupDiGetDeviceRegistryProperty(ptr, ptrDevInfo, SPDRP.SPDRP_FRIENDLYNAME, out _, mem, mem.Size, out _);
+            return flag ? mem.ToString(-1, CharSet.Auto) : string.Empty;
         }
 
-        internal static object GetRegValue<T>(T key, SafeAllocatedMemoryHandle mem, REG_VALUE_TYPE propType) where T : Enum =>
-                        GetRegValue(mem, propType, CorrespondingTypeAttribute.GetCorrespondingTypes(key).FirstOrDefault());
 
-        internal static object GetRegValue(SafeAllocatedMemoryHandle mem, REG_VALUE_TYPE propType, Type cType = null) => propType switch
-        {
-            REG_VALUE_TYPE.REG_DWORD when cType is not null => ((IntPtr)mem).Convert(mem.Size, cType),
-            REG_VALUE_TYPE.REG_BINARY when cType is not null && cType != typeof(byte[]) => ((IntPtr)mem).Convert(mem.Size, cType),
-            _ => propType.GetValue(mem, mem.Size),
-        };
-
-        //private static string GetDeviceLocationPath(IntPtr deviceInfoSet, SpDevInfoData deviceInfoData)
-        //{
-        //    var flag = SetupDiGetDeviceRegistryProperty(deviceInfoSet, ref deviceInfoData, SpDrp.SPDRP_LOCATION_PATHS, out _, null, 0, out var size);
-        //    if (!flag) return string.Empty;
-        //    var description = new StringBuilder(size);
-        //    var success = SetupDiGetDeviceRegistryProperty(deviceInfoSet, ref deviceInfoData, SpDrp.SPDRP_LOCATION_PATHS, out _, description, size, out size);
-        //    return success ? description.ToString() : string.Empty;
-        //}
-
-        //internal static string GetDeviceInstanceId(IntPtr deviceInfoSet, SpDevInfoData deviceInfoData)
-        //{
-        //    var flag = SetupDiGetDeviceInstanceId(deviceInfoSet, ref deviceInfoData, null, 0, out var size);
-        //    if (!flag) return string.Empty;
-        //    var id = new StringBuilder(size);
-        //    var success = SetupDiGetDeviceInstanceId(deviceInfoSet, ref deviceInfoData, id, size, out size);
-        //    return success ? id.ToString() : string.Empty;
-        //}
-
-        //internal static string GetDeviceParent(IntPtr deviceInfoSet, SpDevInfoData deviceInfoData)
-        //{
-        //    var error = CM_Get_Parent(out var ptrPrevious, deviceInfoData.devInst, 0);
-        //    if (error != CfgMgrErrorCode.CR_SUCCESS || error == CfgMgrErrorCode.CR_NO_SUCH_VALUE)
-        //        return string.Empty;
-        //    CM_Get_Device_ID_Size(out var size, ptrPrevious);
-        //    var buffer = new StringBuilder(size);
-        //    var errorCode = CM_Get_Device_ID(ptrPrevious, buffer, buffer.Capacity, 0);
-        //    buffer.Length -= 1; //resize to account for null termination
-        //    return errorCode == CfgMgrErrorCode.CR_SUCCESS ? buffer.ToString() : string.Empty;
-        //}
-
+        private static string GetDeviceInstanceId(SafeHDEVINFO ptr, SP_DEVINFO_DATA ptrDevInfo)
+        { 
+            var sb = new StringBuilder();
+            SetupDiGetDeviceInstanceId(ptr, ptrDevInfo, sb, 0u, out var size);
+            sb = new StringBuilder((int)size);
+            var flag = SetupDiGetDeviceInstanceId(ptr, ptrDevInfo, sb, size, out _);
+            return flag ? sb.ToString() : string.Empty;
+        }
 
         private static byte CalculateChecksum(string data)
         {
@@ -184,6 +193,15 @@ namespace PS5CodeReader
             var formattedCommand = $"{command}:{checkSum:X2}\r\n";
             var commandBytes = Encoding.ASCII.GetBytes(formattedCommand);
             Write(commandBytes, 0 , commandBytes.Length);
+        }
+
+
+        internal void SendBreak(double timeout = 0.25)
+        {
+            if (!IsOpen) return;
+            BreakState = true;
+            Thread.Sleep(TimeSpan.FromMilliseconds(timeout));
+            BreakState = false;
         }
 
     }
