@@ -37,7 +37,9 @@ namespace PS5CodeReader
         };
         
         internal new void Open()
-        {            
+        {
+            base.Open();
+            return;
             foreach (var b in BaudRates)
             {
                 BaudRate = b;
@@ -64,6 +66,8 @@ namespace PS5CodeReader
                 catch (IOException ex) when (ex.Message.ToLowerInvariant().Contains("the parameter is incorrect")) 
                 {
                     if (IsOpen)
+                        Close();
+                    continue;
                         break;
                     continue;
                 }

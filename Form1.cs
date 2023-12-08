@@ -1,10 +1,7 @@
 using System.Net.Http.Json;
-using System.Net;
-using System.Text;
-using System.Text.Json.Serialization;
 using System.Net.Http.Headers;
 using System.Text.Json;
-using Amosoft.IO.Port;
+using System.Text.RegularExpressions;
 
 namespace PS5CodeReader
 {
@@ -13,6 +10,10 @@ namespace PS5CodeReader
         private readonly string FileNameCache = @"cache.json";
         private readonly string StrAuto = @"Auto";
         private PS5ErrorCodeList? errorCodeList;
+
+        [GeneratedRegex("[0-9A-F]+")]
+        private static partial Regex MyRegex();
+
         public Form1()
         {
             InitializeComponent();
@@ -88,7 +89,7 @@ namespace PS5CodeReader
         {
             using var client = new HttpClient();
             client.BaseAddress = new Uri("https://raw.githubusercontent.com/");
-            client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)");
+            client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (compatible; PS5CodeReader/2.1; +https://github.com/amoamare)");
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var response = await client.GetAsync("amoamare/PS5CodeReader/master/ErrorCodes.json");
             response.EnsureSuccessStatusCode();
@@ -242,67 +243,73 @@ namespace PS5CodeReader
                 //nothing to do;
                // LogBox.AppendLine("[-] No Playstation 5 Detected!", ReadOnlyRichTextBox.ColorError);
                 FakePs5Entry();
-                return;           }
+                return;           
+            }
 
             using var serial = new SerialPort();
             serial.PortName = device.Port;
+            serial.BaudRate = 115200;
             serial.Open();
-            serial.ReadTimeout = 2000;
-            string line = string.Empty;
+            serial.ReadTimeout = 30000;
+            List<string> Lines = new();
             do
             {
                 try
                 {
-                    line = serial.ReadLine();
+                    var line = serial.ReadLine();
                     LogBox.AppendLine(line);
-                    break;
                 }
                 catch
                 {
                     serial.SendBreak();
-                    line = serial.ReadLine();
+                    var line = serial.ReadLine();
                     LogBox.AppendLine(line);
                     break;
                 }
-            } while (true);
-            serial.Write("errlog 0");
-            line = string.Empty;
-            do
-            {
-                try
-                {
-                    line = serial.ReadLine();
-                    LogBox.AppendLine(line);
-                    break;
-                }
-                catch
-                {
-                    serial.SendBreak();
-                    line = serial.ReadLine();
-                    LogBox.AppendLine(line);
-                    break;
-                }
-            } while (true);
+            } while (serial.BytesToRead != 0);
 
+            TestRead(serial);
+            
+        }
+
+        private void TestRead(SerialPort serial, int count = 10)
+        {
+            for (var i = 0; i <=count; i++)
+            {
+                serial.Write($"errlog {count}");
+                List<string> Lines = new();
+                do
+                {
+                    try
+                    {
+                        var line = serial.ReadLine();
+                        Lines.Add(line);
+                        LogBox.AppendLine(line);
+                    }
+                    catch
+                    {
+                        serial.SendBreak();
+                        var line = serial.ReadLine();
+                        Lines.Add(line);
+                        LogBox.AppendLine(line);
+                        break;
+                    }
+                } while (serial.BytesToRead != 0);
+
+
+                foreach (var l in Lines.Where(x => x.StartsWith("OK")))
+                {
+                    var r = MyRegex().Matches(l)[1];
+                    var rd = r.Groups[0].Value;
+                    var test = errorCodeList.ErrorCodes.First(x => x.ID == rd);
+                    LogBox.AppendLine($"{test.ID}: {test.Message}");
+                }
+            }
         }
 
         private async void ButtonReloadErrorCodes_Click(object sender, EventArgs e)
         {
-            //    textBox1.Clear();
-            //    textBox1.AppendText("Updating error codes database.\r\n");
             await GetErrorCodesListAsync();
-            if (errorCodeList == default)
-            {
-                //       textBox1.AppendText("Unable to load error codes from either internet or cachce.");
-                //       textBox1.AppendText("Place error codes list in same directory as cache.json,");
-                //       textBox1.AppendText("Or Reload PS5 Errorcodes");
-            }
-            else
-            {
-                //       textBox1.AppendText($"Database Revision: {errorCodeList.Revision}\r\n{errorCodeList.Description}\r\n");
-            }
         }
-
-
     }
 }
