@@ -11,6 +11,13 @@ namespace PS5CodeReader
 {
     internal class SerialPort : System.IO.Ports.SerialPort
     {
+        private readonly static int _buadRate = 115200;
+        internal SerialPort(string portName)
+        {
+            PortName = portName;
+            BaudRate = _buadRate;
+        }
+
         private static IEnumerable<int> BaudRates => new[]
         {
             268435450,
@@ -40,6 +47,8 @@ namespace PS5CodeReader
         {
             base.Open();
             return;
+
+            ///Playstation 5 only supports 115200;
             foreach (var b in BaudRates)
             {
                 BaudRate = b;
@@ -80,7 +89,7 @@ namespace PS5CodeReader
         internal static IEnumerable<Device> SelectSerial(bool isSorted = true, Func<Device, bool>? filter = null)
         {
             var guid = GetGuidFromClassName(@"Ports");
-            var autoDevice = new Device("Auto", "Detect Device Automatically (Auto)");
+            var autoDevice = new Device(@"Auto", @"Detect Device Automatically (Auto)");
             var deviceList = new List<Device>();
             deviceList.AddRange(GetDeviceByGuid(guid, filter));
             if (isSorted)
@@ -96,7 +105,7 @@ namespace PS5CodeReader
             var hDevInfo = SetupDiGetClassDevs(guid, Flags: DIGCF.DIGCF_PRESENT);
             if (hDevInfo == IntPtr.Zero)
             {
-                throw new Exception("Failed to get device information set for the Modem ports");
+                throw new Exception(@"Failed to get device information set for the Modem ports");
             }
 
             try
@@ -187,16 +196,20 @@ namespace PS5CodeReader
         {
             var checksum = 0;
             checksum = Encoding.ASCII.GetBytes(data).Sum(x => x);
-            var test = checksum + 256;
-            return (byte)(test % 256);
+            return (byte)((checksum + 256) % 256);
         }
 
         internal new void Write(string command)
         {
             var checkSum = CalculateChecksum(command);
-            var formattedCommand = $"{command}:{checkSum:X2}\r\n";
-            var commandBytes = Encoding.ASCII.GetBytes(formattedCommand);
+            var commandBytes = Encoding.ASCII.GetBytes($"{command}:{checkSum:X2}\r\n");
             Write(commandBytes, 0 , commandBytes.Length);
+        }
+
+        internal Task<string> WriteLineAsync(string command, CancellationToken cancellationToken = default)
+        {
+            var checkSum = CalculateChecksum(command);
+            return this.RequestResponseAsync($"{command}:{checkSum:X2}", cancellationToken);
         }
 
 

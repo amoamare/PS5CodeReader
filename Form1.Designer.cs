@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             ButtonReadCodes = new Button();
-            ButtonReloadErrorCodes = new Button();
             ComboBoxDevices = new ComboBox();
             label1 = new Label();
             LogBox = new ReadOnlyRichTextBox();
+            ButtonClearLogs = new Button();
             SuspendLayout();
             // 
             // ButtonReadCodes
@@ -44,16 +44,6 @@
             ButtonReadCodes.Text = "Read Codes";
             ButtonReadCodes.UseVisualStyleBackColor = true;
             ButtonReadCodes.Click += ButtonReadCodes_Click;
-            // 
-            // ButtonReloadErrorCodes
-            // 
-            ButtonReloadErrorCodes.Location = new Point(688, 473);
-            ButtonReloadErrorCodes.Name = "ButtonReloadErrorCodes";
-            ButtonReloadErrorCodes.Size = new Size(94, 29);
-            ButtonReloadErrorCodes.TabIndex = 2;
-            ButtonReloadErrorCodes.Text = "Reload Codes";
-            ButtonReloadErrorCodes.UseVisualStyleBackColor = true;
-            ButtonReloadErrorCodes.Click += ButtonReloadErrorCodes_Click;
             // 
             // ComboBoxDevices
             // 
@@ -76,23 +66,34 @@
             // 
             // LogBox
             // 
+            LogBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             LogBox.Location = new Point(12, 66);
             LogBox.Name = "LogBox";
             LogBox.ReadOnly = true;
-            LogBox.Size = new Size(670, 494);
+            LogBox.Size = new Size(869, 494);
             LogBox.TabIndex = 5;
             LogBox.TabStop = false;
             LogBox.Text = "";
+            // 
+            // ButtonClearLogs
+            // 
+            ButtonClearLogs.Location = new Point(788, 31);
+            ButtonClearLogs.Name = "ButtonClearLogs";
+            ButtonClearLogs.Size = new Size(94, 29);
+            ButtonClearLogs.TabIndex = 6;
+            ButtonClearLogs.Text = "Clear Logs";
+            ButtonClearLogs.UseVisualStyleBackColor = true;
+            ButtonClearLogs.Click += ButtonClearLogs_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(794, 572);
+            ClientSize = new Size(893, 572);
+            Controls.Add(ButtonClearLogs);
             Controls.Add(LogBox);
             Controls.Add(label1);
             Controls.Add(ComboBoxDevices);
-            Controls.Add(ButtonReloadErrorCodes);
             Controls.Add(ButtonReadCodes);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
@@ -105,9 +106,9 @@
         #endregion
 
         private Button ButtonReadCodes;
-        private Button ButtonReloadErrorCodes;
         private ComboBox ComboBoxDevices;
         private Label label1;
         private ReadOnlyRichTextBox LogBox;
+        private Button ButtonClearLogs;
     }
 }

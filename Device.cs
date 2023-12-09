@@ -5,17 +5,18 @@ namespace PS5CodeReader
     internal class Device
     {
         internal string Port { get; }
-        internal string FriendlyName { get; }
-        internal string InstanceId { get; }
-        internal string DeviceLocationPath { get; }
+        internal string? FriendlyName { get; }
+        internal string? InstanceId { get; }
+        internal string? DeviceLocationPath { get; }
         internal bool IsProductIdSet { get; }
         internal bool IsVenderIdSet { get; }
         internal bool HasProductAndVendorId => IsProductIdSet && IsVenderIdSet;
         internal int ProductId { get; }
         internal int VendorId { get; }
-        internal string DeviceParent { get; }
-        internal string DeviceSerialNumber { get; }
-        internal Device(string port, string friendlyName)
+        internal string? DeviceParent { get; }
+        internal string? DeviceSerialNumber { get; }
+
+        internal Device(string port, string? friendlyName)
         {
             Port = port;
             FriendlyName = friendlyName;
@@ -37,7 +38,7 @@ namespace PS5CodeReader
            
         }
 
-        public override string ToString()
+        public override string? ToString()
         {
             return FriendlyName;
         }

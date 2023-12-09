@@ -2,6 +2,7 @@ using System.Net.Http.Json;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using System.Runtime.CompilerServices;
 
 namespace PS5CodeReader
 {
@@ -186,97 +187,70 @@ namespace PS5CodeReader
             }
         }
 
-        private void TryNext()
+        private async Task<Device?> AutoDetectDeviceAsync()
         {
-            //add handler to event
-            sp1.LineReceived += new LineReceivedEventHandler(sp1_LineReceived);
-            //   cmbPortas.Items.AddRange(sp1.GetPortas());
-            //   cmbVelocidade.Items.AddRange(sp1.GetVelocidades());
-
-        }
-        PortaSerial sp1 = new PortaSerial(); // like this command passed LineReceivedEvent or LineReceived
-                                             // event handler method
-        void sp1_LineReceived(object sender, LineReceivedEventArgs Args)
-        {
-            var r = Args;
-        }
-
-        private Task<Device?> AutoDetectDeviceAsync()
-        {
+            var cts = new CancellationTokenSource(TimeSpan.FromSeconds(10));
             var devices = ComboBoxDevices.Items.OfType<Device>();
-            foreach(var device in devices)
+            foreach (var device in devices)
             {
-                if (device.FriendlyName.StartsWith(StrAuto, StringComparison.InvariantCultureIgnoreCase))
+                if (!string.IsNullOrEmpty(device.FriendlyName) && device.Port.StartsWith(StrAuto, StringComparison.InvariantCultureIgnoreCase))
                 {
                     continue;
                 }
-                LogBox.Append($"Attemping to auto detect Playstation 5 on {device}...");
-                LogBox.Fail();
-            }
-            return Task.FromResult<Device?>(default);
-        }
+                LogBox.AppendLine($"[*] Auto Detecting Playstation 5 on {device}", ReadOnlyRichTextBox.ColorInformation);
+                LogBox.AppendLine("\t- Disconnect power cord from PS5\r\n\t- Wait 5 seconds.\r\n\t- Connect Power to PS5 due not power on!", ReadOnlyRichTextBox.ColorError);
+                using var serial = new SerialPort(device.Port);
+                LogBox.Append($"Opening Device on {device.FriendlyName}...");
+                serial.Open();
+                LogBox.Okay();
+                LogBox.AppendLine("[*] Listening for Playstation 5.", ReadOnlyRichTextBox.ColorInformation);
+                List<string> Lines = new();
+                do
+                {
+                    try
+                    {
+                        var line = await serial.ReadLineAsync(cts.Token);
+                        Lines.Add(line);
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            serial.SendBreak();
+                            if (cts.IsCancellationRequested)
+                                cts = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+                            var line = await serial.ReadLineAsync(cts.Token);
+                            Lines.Add(line);
+                            break;
+                        }
+                        catch
+                        {
 
-        private void FakePs5Entry()
-        {
-            LogBox.AppendLine("[+] Playstation 5 Detected on COM7.", ReadOnlyRichTextBox.ColorSuccess);
-            LogBox.Append("Reading Error Codes...");
-            LogBox.Okay();
-            LogBox.AppendLine("[!] Found 2 Error Code(s)", ReadOnlyRichTextBox.ColorInformation);
-            for(var i = 22; i > 20; i--)
-            {
-                LogBox.AppendLine($"  Code: {errorCodeList.ErrorCodes[i].ID}\r\n\t{errorCodeList.ErrorCodes[i].Message}");
+                        }
+                    }
+                } while (serial.BytesToRead != 0);
+
+                var flag = Lines.Any(x => x.StartsWith(@"$$ [MANU] UART CMD READY:36") || x.StartsWith(@"NG E0000003:4D") || x.StartsWith("OK 00000000:3A"));
+                if (flag)
+                {
+                    LogBox.AppendLine($@"[+] Detected a Playstation 5 on {device.FriendlyName}", ReadOnlyRichTextBox.ColorSuccess);
+                    ComboBoxDevices.SelectedItem = device;
+                    return device;
+                }
             }
+            return default;
         }
 
         private async void ButtonReadCodes_Click(object sender, EventArgs e)
         {
-            if (ComboBoxDevices.SelectedItem is not Device device) return;
-            var autoDetect = device.Port.StartsWith(StrAuto, StringComparison.InvariantCultureIgnoreCase);
-            if (autoDetect)
-            {
-                //todo: auto detect device and return it;
-                device = await AutoDetectDeviceAsync();
-                
-            }
-            if (device == default)
-            {
-                //nothing to do;
-               // LogBox.AppendLine("[-] No Playstation 5 Detected!", ReadOnlyRichTextBox.ColorError);
-                FakePs5Entry();
-                return;           
-            }
-
-            using var serial = new SerialPort();
-            serial.PortName = device.Port;
-            serial.BaudRate = 115200;
-            serial.Open();
-            serial.ReadTimeout = 30000;
-            List<string> Lines = new();
-            do
-            {
-                try
-                {
-                    var line = serial.ReadLine();
-                    LogBox.AppendLine(line);
-                }
-                catch
-                {
-                    serial.SendBreak();
-                    var line = serial.ReadLine();
-                    LogBox.AppendLine(line);
-                    break;
-                }
-            } while (serial.BytesToRead != 0);
-
-            TestRead(serial);
-            
+            await RunOperationsAsync(ButtonReadCodes);      
         }
 
         private void TestRead(SerialPort serial, int count = 10)
         {
-            for (var i = 0; i <=count; i++)
+            for (var i = 0; i <= count; i++)
             {
-                serial.Write($"errlog {count}");
+                serial.Write($"errlog {i}");
                 List<string> Lines = new();
                 do
                 {
@@ -284,19 +258,18 @@ namespace PS5CodeReader
                     {
                         var line = serial.ReadLine();
                         Lines.Add(line);
-                        LogBox.AppendLine(line);
+                        //LogBox.AppendLine(line);
                     }
                     catch
                     {
                         serial.SendBreak();
                         var line = serial.ReadLine();
                         Lines.Add(line);
-                        LogBox.AppendLine(line);
+                        //LogBox.AppendLine(line);
                         break;
                     }
                 } while (serial.BytesToRead != 0);
-
-
+                LogBox.AppendLine($@"Error {i}");
                 foreach (var l in Lines.Where(x => x.StartsWith("OK")))
                 {
                     var r = MyRegex().Matches(l)[1];
@@ -307,9 +280,95 @@ namespace PS5CodeReader
             }
         }
 
-        private async void ButtonReloadErrorCodes_Click(object sender, EventArgs e)
+
+        private async void ButtonClearLogs_Click(object sender, EventArgs e)
         {
-            await GetErrorCodesListAsync();
+            await RunOperationsAsync(ButtonClearLogs);
+        }
+
+        private bool _interfaceState;
+        private bool InterfaceState
+        {
+            get => _interfaceState; 
+            set
+            {
+
+                ButtonReadCodes.Enabled = value;
+                ButtonClearLogs.Enabled = value;
+                ComboBoxDevices.Enabled = value;
+            }
+        }
+        private async Task RunOperationsAsync(object caller, [CallerMemberName] string membername = "")
+        {
+            LogBox.Clear();
+            InterfaceState = false;
+            try
+            {
+                if (caller == ButtonReadCodes)
+                {
+                    LogBox.AppendLine("[*] Operation: Read UART Codes.", ReadOnlyRichTextBox.ColorError);
+                    await ReadCodesAsync();
+                }
+                else if (caller == ButtonClearLogs)
+                {
+                    LogBox.AppendLine("[*] Operation: Clear UART Codes.", ReadOnlyRichTextBox.ColorError);
+                    await ClearLogsAsync();
+                }
+            }
+            catch
+            {
+                //todo: Error Handling;
+            }
+            finally
+            {
+                InterfaceState = true;
+            }
+        }
+
+        private async Task ReadCodesAsync()
+        {
+            if (ComboBoxDevices.SelectedItem is not Device device) return;
+            var autoDetect = device.Port.StartsWith(StrAuto, StringComparison.InvariantCultureIgnoreCase);
+            if (autoDetect)
+            {
+                //todo: auto detect device and return it;
+                device = await AutoDetectDeviceAsync();
+
+            }
+            if (device == default)
+            {
+                LogBox.AppendLine("[-] No Playstation 5 Detected!", ReadOnlyRichTextBox.ColorError);
+                return;
+            }
+            using var serial = new SerialPort(device.Port);
+            serial.Open();
+            TestRead(serial);
+        }
+
+        private async Task ClearLogsAsync()
+        {
+            if (ComboBoxDevices.SelectedItem is not Device device) return;
+            var autoDetect = device.Port.StartsWith(StrAuto, StringComparison.InvariantCultureIgnoreCase);
+            if (autoDetect)
+            {
+                //todo: auto detect device and return it;
+                device = await AutoDetectDeviceAsync();
+
+            }
+            if (device == default)
+            {
+                LogBox.AppendLine("[-] No Playstation 5 Detected!", ReadOnlyRichTextBox.ColorError);
+                return;
+            }
+            var cts = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+            using var serial = new SerialPort(device.Port);
+            serial.Open();
+            LogBox.Append("[+]\tClearing Logs...", ReadOnlyRichTextBox.ColorInformation);
+            var l = await serial.WriteLineAsync("errlog clear", cts.Token);
+            LogBox.Okay();
+            LogBox.AppendLine(l);
+            l = await serial.ReadLineAsync(cts.Token);
+            LogBox.AppendLine(l);
         }
     }
 }
