@@ -206,10 +206,10 @@ namespace PS5CodeReader
             Write(commandBytes, 0 , commandBytes.Length);
         }
 
-        internal Task<string> WriteLineAsync(string command, CancellationToken cancellationToken = default)
+        internal  Task WriteLineAsync(string command, CancellationToken cancellationToken = default)
         {
             var checkSum = CalculateChecksum(command);
-            return this.RequestResponseAsync($"{command}:{checkSum:X2}", cancellationToken);
+            return SerialPortExtensions.WriteLineAsync(this, $"{command}:{checkSum:X2}", cancellationToken);;
         }
 
 
@@ -218,6 +218,14 @@ namespace PS5CodeReader
             if (!IsOpen) return;
             BreakState = true;
             Thread.Sleep(TimeSpan.FromMilliseconds(timeout));
+            BreakState = false;
+        }
+
+        internal async Task SendBreakAsync(double timeout = 0.25, CancellationToken cancellationToken = default)
+        {
+            if (!IsOpen) return;
+            BreakState = true;
+            await Task.Delay(TimeSpan.FromMicroseconds(timeout), cancellationToken);
             BreakState = false;
         }
 

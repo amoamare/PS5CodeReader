@@ -34,6 +34,30 @@ namespace PS5CodeReader
             }
 
         }
+        private int BinaryCodedDecimalToInteger(int value)
+        {
+            var lowerNibble = value & 0x0F;
+            var upperNibble = value >> 4;
+
+            var multipleOfOne = lowerNibble;
+            var multipleOfTen = upperNibble * 10;
+
+            return multipleOfOne + multipleOfTen;
+        }
+
+        private DateTime ConvertByteBufferToDateTime(byte[] dateTimeBuffer)
+        {
+            var second = BinaryCodedDecimalToInteger(dateTimeBuffer[0]);
+            var minute = BinaryCodedDecimalToInteger(dateTimeBuffer[1]);
+            var hour = BinaryCodedDecimalToInteger(dateTimeBuffer[2]);
+            var dayofWeek = BinaryCodedDecimalToInteger(dateTimeBuffer[3]);
+            var day = BinaryCodedDecimalToInteger(dateTimeBuffer[4]);
+            var month = BinaryCodedDecimalToInteger(dateTimeBuffer[5]);
+            var year = 2000 + BinaryCodedDecimalToInteger(dateTimeBuffer[6]);
+
+            return new DateTime(year, month, day, hour, minute, second);
+        }
+
         private void ComboBoxDevices_DropDown(object sender, EventArgs e)
         {
             ComboBoxDevices.DataSource = SerialPort.SelectSerial().ToList();
@@ -189,7 +213,7 @@ namespace PS5CodeReader
 
         private async Task<Device?> AutoDetectDeviceAsync()
         {
-            var cts = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+            var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
             var devices = ComboBoxDevices.Items.OfType<Device>();
             foreach (var device in devices)
             {
@@ -246,41 +270,6 @@ namespace PS5CodeReader
             await RunOperationsAsync(ButtonReadCodes);      
         }
 
-        private void TestRead(SerialPort serial, int count = 10)
-        {
-            for (var i = 0; i <= count; i++)
-            {
-                serial.Write($"errlog {i}");
-                List<string> Lines = new();
-                do
-                {
-                    try
-                    {
-                        var line = serial.ReadLine();
-                        Lines.Add(line);
-                        //LogBox.AppendLine(line);
-                    }
-                    catch
-                    {
-                        serial.SendBreak();
-                        var line = serial.ReadLine();
-                        Lines.Add(line);
-                        //LogBox.AppendLine(line);
-                        break;
-                    }
-                } while (serial.BytesToRead != 0);
-                LogBox.AppendLine($@"Error {i}");
-                foreach (var l in Lines.Where(x => x.StartsWith("OK")))
-                {
-                    var r = MyRegex().Matches(l)[1];
-                    var rd = r.Groups[0].Value;
-                    var test = errorCodeList.ErrorCodes.First(x => x.ID == rd);
-                    LogBox.AppendLine($"{test.ID}: {test.Message}");
-                }
-            }
-        }
-
-
         private async void ButtonClearLogs_Click(object sender, EventArgs e)
         {
             await RunOperationsAsync(ButtonClearLogs);
@@ -325,7 +314,32 @@ namespace PS5CodeReader
             }
         }
 
-        private async Task ReadCodesAsync()
+        private async Task ReadData(SerialPort serial, string command, CancellationTokenSource cts)
+        {
+            await serial.WriteLineAsync(command);
+            List<string> Lines = new();
+            do
+            {
+                try
+                {
+                    var line = await serial.ReadLineAsync(cts.Token);
+                    Lines.Add(line); ;
+                }
+                catch
+                {
+                    await serial.SendBreakAsync(cancellationToken: cts.Token);
+                    var line = await serial.ReadLineAsync(cts.Token);
+                    Lines.Add(line);
+                    break;
+                }
+            } while (serial.BytesToRead != 0);
+            foreach(var l in Lines)
+            {
+                LogBox.AppendLine(l);
+            }
+        }
+
+        private async Task ReadCodesAsync(int count = 10)
         {
             if (ComboBoxDevices.SelectedItem is not Device device) return;
             var autoDetect = device.Port.StartsWith(StrAuto, StringComparison.InvariantCultureIgnoreCase);
@@ -340,9 +354,37 @@ namespace PS5CodeReader
                 LogBox.AppendLine("[-] No Playstation 5 Detected!", ReadOnlyRichTextBox.ColorError);
                 return;
             }
+            var cts = new CancellationTokenSource(TimeSpan.FromSeconds(10));
             using var serial = new SerialPort(device.Port);
             serial.Open();
-            TestRead(serial);
+            for (var i = 0; i <= count; i++)
+            {
+                await serial.WriteLineAsync($"errlog {i}");
+                List<string> Lines = new();
+                do
+                {
+                    try
+                    {
+                        var line = await serial.ReadLineAsync(cts.Token);
+                        Lines.Add(line);;
+                    }
+                    catch
+                    {
+                        await serial.SendBreakAsync(cancellationToken: cts.Token);
+                        var line = await serial.ReadLineAsync(cts.Token);
+                        Lines.Add(line);
+                        break;
+                    }
+                } while (serial.BytesToRead != 0);
+                LogBox.AppendLine($@"Error {i}");
+                foreach (var l in Lines.Where(x => x.StartsWith("OK")))
+                {
+                    var r = MyRegex().Matches(l)[1];
+                    var rd = r.Groups[0].Value;
+                    var test = errorCodeList.ErrorCodes.First(x => x.ID == rd);
+                    LogBox.AppendLine($"{test.ID}: {test.Message}");
+                }
+            }
         }
 
         private async Task ClearLogsAsync()
@@ -364,11 +406,11 @@ namespace PS5CodeReader
             using var serial = new SerialPort(device.Port);
             serial.Open();
             LogBox.Append("[+]\tClearing Logs...", ReadOnlyRichTextBox.ColorInformation);
-            var l = await serial.WriteLineAsync("errlog clear", cts.Token);
-            LogBox.Okay();
-            LogBox.AppendLine(l);
-            l = await serial.ReadLineAsync(cts.Token);
-            LogBox.AppendLine(l);
+           // var l = await serial.WriteLineAsync("errlog clear", cts.Token);
+           // LogBox.Okay();
+          //  LogBox.AppendLine(l);
+           // l = await serial.ReadLineAsync(cts.Token);
+            //LogBox.AppendLine(l);
         }
     }
 }
