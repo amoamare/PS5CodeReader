@@ -34,29 +34,6 @@ namespace PS5CodeReader
             }
 
         }
-        private int BinaryCodedDecimalToInteger(int value)
-        {
-            var lowerNibble = value & 0x0F;
-            var upperNibble = value >> 4;
-
-            var multipleOfOne = lowerNibble;
-            var multipleOfTen = upperNibble * 10;
-
-            return multipleOfOne + multipleOfTen;
-        }
-
-        private DateTime ConvertByteBufferToDateTime(byte[] dateTimeBuffer)
-        {
-            var second = BinaryCodedDecimalToInteger(dateTimeBuffer[0]);
-            var minute = BinaryCodedDecimalToInteger(dateTimeBuffer[1]);
-            var hour = BinaryCodedDecimalToInteger(dateTimeBuffer[2]);
-            var dayofWeek = BinaryCodedDecimalToInteger(dateTimeBuffer[3]);
-            var day = BinaryCodedDecimalToInteger(dateTimeBuffer[4]);
-            var month = BinaryCodedDecimalToInteger(dateTimeBuffer[5]);
-            var year = 2000 + BinaryCodedDecimalToInteger(dateTimeBuffer[6]);
-
-            return new DateTime(year, month, day, hour, minute, second);
-        }
 
         private void ComboBoxDevices_DropDown(object sender, EventArgs e)
         {
