@@ -11,6 +11,8 @@ namespace PS5CodeReader
         [Description("Monitor Mode")]
         MonitorMode,
         [Description("Run Command Lists")]
-        RunCommandList
+        RunCommandList,
+        [Description("Run Raw Command")]
+        RunRawCommand
     }
 }

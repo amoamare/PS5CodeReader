@@ -1,8 +1,8 @@
 using System.Net.Http.Json;
 using System.Net.Http.Headers;
 using System.Text.Json;
-using System.Text.RegularExpressions;
 using System.Diagnostics;
+using Microsoft.VisualStudio.Threading;
 
 namespace PS5CodeReader
 {
@@ -13,8 +13,42 @@ namespace PS5CodeReader
         private PS5ErrorCodeList? errorCodeList;
         private CancellationTokenSource? cancellationTokenSource;
 
-        [GeneratedRegex("[0-9A-F]+")]
-        private static partial Regex MyRegex();
+        /*
+         * Possible Commands
+         * version
+         * bringup
+         * shutdown
+         * firmud
+         * bsn
+         * halt
+         * cp ready
+         * cp busy
+         * cp reset
+         * bestat
+         * powersw
+         * resetsw
+         * bootbeep stat
+         * bootbeep on
+         * bootbeep off
+         * reset syscon
+         * xdrdiag info
+         * xdrdiag start
+         * xdrdiag result
+         * xiodiag
+         * fandiag
+         * errlog 
+         * readline
+         * tmpforcp <zone id>
+         * cp beepreote
+         * cp beep2kn1n3
+         * cp beep2kn2n3
+         * csum
+         * osbo
+         * scopen
+         * scclose
+         * ejectsw
+         */
+
 
         public Form1()
         {
@@ -23,15 +57,10 @@ namespace PS5CodeReader
 
         private async void Form1_Load(object sender, EventArgs e)
         {
-            var text = @"NG E0000003:4D";
-
- //NG E0000004:4E"
-            var error = @"OK 00000000 0000000 0000000 00000000 000000000 0000 0000 00000 0000:FC";
-            var split = error.Split(" ", StringSplitOptions.TrimEntries);
-            var r = split;
             LoadDatabaseTypes();
             LoadOperationTypes();
             LoadPorts();
+            ComboBoxOperationType.SelectedValueChanged += ComboBoxOperationType_SelectedValueChanged;
             await GetErrorCodesListAsync();
             if (errorCodeList == default)
             {
@@ -42,6 +71,11 @@ namespace PS5CodeReader
                 LogBox.AppendLine("[+] Please connect your Playstation 5 to UART do not power up the console.", ReadOnlyRichTextBox.ColorInformation);
             }
 
+        }
+
+        private void ComboBoxOperationType_SelectedValueChanged(object? sender, EventArgs e)
+        {
+            PanelRawCommand.Visible = ComboBoxOperationType.SelectedValue is OperationType type && type == OperationType.RunRawCommand;
         }
 
         private void ComboBoxDevices_DropDown(object sender, EventArgs e)
@@ -87,7 +121,7 @@ namespace PS5CodeReader
                 {
                     LogBox.Okay();
                     //Store errorCode list as a chache.
-                    await CacheErrorListLocall();
+                    await CacheErrorListLocalAsync();
                 }
                 else
                 {
@@ -102,9 +136,9 @@ namespace PS5CodeReader
                 //Lets get errorCodes from a cached local file. 
                 errorCodeList = await GetErrorCodesCacheAsync();
             }
-            if (errorCodeList != default && errorCodeList.ErrorCodes.Any())
+            if (errorCodeList != default && errorCodeList.PlayStation5 != null && errorCodeList.PlayStation5.ErrorCodes.Any())
             {
-                LogBox.AppendLine($"[+] Loaded {errorCodeList.ErrorCodes.Count} Errors Succesfully.", ReadOnlyRichTextBox.ColorSuccess);
+                LogBox.AppendLine($"[+] Loaded {errorCodeList.PlayStation5.ErrorCodes.Count} Errors Succesfully.", ReadOnlyRichTextBox.ColorSuccess);
             }
             else
             {
@@ -127,6 +161,11 @@ namespace PS5CodeReader
             return await response.Content.ReadFromJsonAsync<PS5ErrorCodeList>();
         }
 
+
+        /// <summary>
+        /// Gets a list of Error Codes from Cached File on System
+        /// </summary>
+        /// <returns></returns>
         private async Task<PS5ErrorCodeList?> GetErrorCodesCacheAsync()
         {
             LogBox.Append("Loading Errors List From Cached File...");
@@ -138,7 +177,7 @@ namespace PS5CodeReader
             }
             using var stream = File.OpenRead(FileNameCache);
             var cached = await JsonSerializer.DeserializeAsync<PS5ErrorCodeList>(stream);
-            if (cached == default || !cached.ErrorCodes.Any())
+            if (cached == default || cached.PlayStation5 != default && !cached.PlayStation5.ErrorCodes.Any())
             {
                 LogBox.Fail();
                 return default;
@@ -147,6 +186,12 @@ namespace PS5CodeReader
             return cached;
         }
 
+
+        /// <summary>
+        /// Save error codes to a cached file on system
+        /// </summary>
+        /// <param name="fileName">cached.json</param>
+        /// <returns></returns>
         private async Task SaveCacheFileAsync(string fileName)
         {
             using var stream = File.Create(fileName);
@@ -156,7 +201,12 @@ namespace PS5CodeReader
             return; // only need to store it as a cahce first time creating it
         }
 
-        private async Task CacheErrorListLocall()
+
+        /// <summary>
+        /// Cachce error list on local disk
+        /// </summary>
+        /// <returns></returns>
+        private async Task CacheErrorListLocalAsync()
         {
             if (errorCodeList == default)
             {
@@ -223,30 +273,31 @@ namespace PS5CodeReader
         {
             set
             {
-
-                //ButtonRunOperation.Enabled = value;
                 ButtonRunOperation.Text = value ? @"Run Operation" : @"Cancel";
                 ButtonRunOperation.Tag = !value;
                 ComboBoxDevices.Enabled = value;
                 ComboBoxDeviceType.Enabled = value;
                 ComboBoxOperationType.Enabled = value;
+                TextBoxRawCommand.Enabled = !value;
             }
         }
 
         private async Task<Device?> AutoDetectDeviceAsync()
         {
-            var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
-            var devices = ComboBoxDevices.Items.OfType<Device>();
-            foreach (var device in devices)
+            Device? device = ComboBoxDevices.SelectedItem as Device;
+            if (device == default || errorCodeList == null) return default;
+            var autoDetect = device.Port.StartsWith(StrAuto, StringComparison.InvariantCultureIgnoreCase);
+            if (!autoDetect) return device;
+            var devices = ComboBoxDevices.Items.OfType<Device>().ToList();
+            devices.Remove(device); // remove the auto detect device. 
+            if (devices.Count == 1) return devices.FirstOrDefault(); //if only 1 device is detected we can just skipp detecting it.
+            cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(1));
+            foreach (var autoDevice in devices)
             {
-                if (!string.IsNullOrEmpty(device.FriendlyName) && device.Port.StartsWith(StrAuto, StringComparison.InvariantCultureIgnoreCase))
-                {
-                    continue;
-                }
-                LogBox.AppendLine($"[*] Auto Detecting Playstation 5 on {device}", ReadOnlyRichTextBox.ColorInformation);
+                LogBox.AppendLine($"[*] Auto Detecting Playstation 5 on {autoDevice}", ReadOnlyRichTextBox.ColorInformation);
                 LogBox.AppendLine("\t- Disconnect power cord from PS5\r\n\t- Wait 5 seconds.\r\n\t- Connect Power to PS5 due not power on!", ReadOnlyRichTextBox.ColorError);
-                using var serial = new SerialPort(device.Port);
-                LogBox.Append($"Opening Device on {device.FriendlyName}...");
+                using var serial = new SerialPort(autoDevice.Port);
+                LogBox.Append($"Opening Device on {autoDevice.FriendlyName}...");
                 serial.Open();
                 LogBox.Okay();
                 LogBox.AppendLine("[*] Listening for Playstation 5.", ReadOnlyRichTextBox.ColorInformation);
@@ -255,33 +306,24 @@ namespace PS5CodeReader
                 {
                     try
                     {
-                        var line = await serial.ReadLineAsync(cts.Token);
+                        var line = await serial.ReadLineAsync(cancellationTokenSource.Token);
                         Lines.Add(line);
                     }
-                    catch
+                    catch (OperationCanceledException)
                     {
-                        try
-                        {
-                            serial.SendBreak();
-                            if (cts.IsCancellationRequested)
-                                cts = new CancellationTokenSource(TimeSpan.FromSeconds(10));
-                            var line = await serial.ReadLineAsync(cts.Token);
-                            Lines.Add(line);
-                            break;
-                        }
-                        catch
-                        {
-
-                        }
+                        cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+                        await serial.SendBreakAsync(cancellationToken: cancellationTokenSource.Token);
+                        var line = await serial.ReadLineAsync(cancellationTokenSource.Token);
+                        Lines.Add(line);
                     }
                 } while (serial.BytesToRead != 0);
 
                 var flag = Lines.Any(x => x.StartsWith(@"$$ [MANU] UART CMD READY:36") || x.StartsWith(@"NG E0000003:4D") || x.StartsWith("OK 00000000:3A"));
                 if (flag)
                 {
-                    LogBox.AppendLine($@"[+] Detected a Playstation 5 on {device.FriendlyName}", ReadOnlyRichTextBox.ColorSuccess);
-                    ComboBoxDevices.SelectedItem = device;
-                    return device;
+                    LogBox.AppendLine($@"[+] Detected a Playstation 5 on {autoDevice.FriendlyName}", ReadOnlyRichTextBox.ColorSuccess);
+                    ComboBoxDevices.SelectedItem = autoDevice;
+                    return autoDevice;
                 }
             }
             return default;
@@ -292,16 +334,20 @@ namespace PS5CodeReader
             if (ComboBoxOperationType.SelectedValue is not OperationType type) return;
             try
             {
-                LogBox.Clear();
-
                 if (ButtonRunOperation.Tag is not null && ButtonRunOperation.Tag is bool cancel && cancel
                     && cancellationTokenSource != null)
                 {
                     cancellationTokenSource.Cancel(false);
                     return;
                 }
+
+                LogBox.Clear();
                 InterfaceState = false;
                 await RunOperationsAsync(type);
+            }
+            catch (OperationCanceledException)
+            {
+                LogBox.AppendLine("[!] Operation Cancelled");
             }
             catch (Exception ex)
             {
@@ -335,102 +381,74 @@ namespace PS5CodeReader
                     LogBox.AppendLine("[*] Operation: Run Command List.", ReadOnlyRichTextBox.ColorError);
                     await RunCommmandListAsync();
                     break;
+                case OperationType.RunRawCommand:
+                    LogBox.AppendLine("[*] Operation: Run Raw Command.", ReadOnlyRichTextBox.ColorError);
+                    await RunRawCommandAsync();
+                    break;
 
             }
         }
 
         #region Run Operation Types
 
-        private async Task ReadData(SerialPort serial, string command, CancellationTokenSource cts)
-        {
-            await serial.WriteLineAsync(command);
-            List<string> Lines = new();
-            do
-            {
-                try
-                {
-                    var line = await serial.ReadLineAsync(cts.Token);
-                    Lines.Add(line);
-                }
-                catch
-                {
-                    await serial.SendBreakAsync(cancellationToken: cts.Token);
-                    var line = await serial.ReadLineAsync(cts.Token);
-                    Lines.Add(line);
-                    break;
-                }
-            } while (serial.BytesToRead != 0);
-            foreach (var l in Lines)
-            {
-                LogBox.AppendLine(l);
-            }
-        }
-
+        /// <summary>
+        /// Read past 10 error logs
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
         private async Task ReadCodesAsync(int count = 10)
         {
-            Device? device = ComboBoxDevices.SelectedItem as Device;
-            if (device == default || errorCodeList == null) return;
-            var autoDetect = device.Port.StartsWith(StrAuto, StringComparison.InvariantCultureIgnoreCase);
-            if (autoDetect)
-            {
-                //todo: auto detect device and return it;
-                device = await AutoDetectDeviceAsync();
-            }
+            var device = await AutoDetectDeviceAsync();
             if (device == default)
             {
                 LogBox.AppendLine("[-] No Playstation 5 Detected!", ReadOnlyRichTextBox.ColorError);
                 return;
             }
-            var cts = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+            cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(10));
             using var serial = new SerialPort(device.Port);
             serial.Open();
+            List<string> Lines = new();
             for (var i = 0; i <= count; i++)
             {
                 var command = $"errlog {i}";
+                var checksum = SerialPort.CalculateChecksum(command);
                 await serial.WriteLineAsync(command);
-                List<string> Lines = new();
                 do
                 {
-                    try
+                    var line = await serial.ReadLineAsync(cancellationTokenSource.Token);
+                    if (!string.Equals($"{command}:{checksum:X2}", line, StringComparison.InvariantCultureIgnoreCase))
                     {
-                        var line = await serial.ReadLineAsync(cts.Token);
-                        if (!string.Equals(command, line, StringComparison.InvariantCultureIgnoreCase))
-                        {
-                            //ignore the echo'd command capture everything else. 
-                            Lines.Add(line);
-                        }
-                    }
-                    catch
-                    {
-                        await serial.SendBreakAsync(cancellationToken: cts.Token);
-                        var line = await serial.ReadLineAsync(cts.Token);
+                        //ignore the echo'd command capture everything else. 
                         Lines.Add(line);
-                        break;
                     }
                 } while (serial.BytesToRead != 0);
-                LogBox.AppendLine($@"Error {i}");
+            }
 
-                //OK 00000000 0000000 0000000 00000000 000000000 0000 0000 00000 0000:FC
-                foreach (var l in Lines.Where(x => x.StartsWith("OK")))
+            foreach (var l in Lines)
+            {
+                var split = l.Split(' ');
+                if (!split.Any()) continue;
+                switch (split[0])
                 {
-                    var r = MyRegex().Matches(l)[1];
-                    var rd = r.Groups[0].Value;
-                    var test = errorCodeList.ErrorCodes.First(x => x.ID == rd);
-                    LogBox.AppendLine($"{test.ID}: {test.Message}");
+                    case "NG":
+                        LogBox.AppendLine("Failed to read data");
+                        break;
+                    case "OK":
+                        var errorCode = split[2];
+                        var errorLookup = errorCodeList.PlayStation5.ErrorCodes.First(x => x.ID == errorCode);
+                        LogBox.AppendLine($"{errorLookup.ID}: {errorLookup.Message}");
+                        break;
                 }
             }
         }
 
+        /// <summary>
+        /// Clears Error Logs
+        /// </summary>
+        /// <returns></returns>
         private async Task ClearLogsAsync()
         {
-            Device? device = ComboBoxDevices.SelectedItem as Device;
-            if (device == default || errorCodeList == null) return;
-            var autoDetect = device.Port.StartsWith(StrAuto, StringComparison.InvariantCultureIgnoreCase);
-            if (autoDetect)
-            {
-                //todo: auto detect device and return it;
-                device = await AutoDetectDeviceAsync();
-            }
+            var device = await AutoDetectDeviceAsync();
             if (device == default)
             {
                 LogBox.AppendLine("[-] No Playstation 5 Detected!", ReadOnlyRichTextBox.ColorError);
@@ -440,20 +458,44 @@ namespace PS5CodeReader
             using var serial = new SerialPort(device.Port);
             serial.Open();
             LogBox.Append("[+]\tClearing Logs...", ReadOnlyRichTextBox.ColorInformation);
+            var command = "errlog clear";
+            var checksum = SerialPort.CalculateChecksum(command);
             await serial.WriteLineAsync("errlog clear", cancellationTokenSource.Token);
-            LogBox.Okay();         
+            string? response = default;
+            do
+            {
+                var line = await serial.ReadLineAsync(cancellationTokenSource.Token);
+                if (!string.Equals($"{command}:{checksum:X2}", line, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    //ignore the echo'd command capture everything else. 
+                    response = line;
+                }
+            } while (serial.BytesToRead != 0);
+            var split = response?.Split(' ');
+            if (split == default || split.Any())
+            {
+                LogBox.Okay();
+                return;
+            }
+            switch (split[0])
+            {
+                case "NG":
+                    LogBox.Fail();
+                    break;
+                case "OK":
+                    LogBox.Okay();
+                    break;
+            }
         }
 
+
+        /// <summary>
+        /// Run in monitor mode. This will listen to anything the console might be saying. 
+        /// </summary>
+        /// <returns></returns>
         private async Task RunMonitorModeAsync()
         {
-            Device? device = ComboBoxDevices.SelectedItem as Device;
-            if (device == default || errorCodeList == null) return;
-            var autoDetect = device.Port.StartsWith(StrAuto, StringComparison.InvariantCultureIgnoreCase);
-            if (autoDetect)
-            {
-                //todo: auto detect device and return it;
-                device = await AutoDetectDeviceAsync();
-            }
+            var device = await AutoDetectDeviceAsync();
             if (device == default)
             {
                 LogBox.AppendLine("[-] No Playstation 5 Detected!", ReadOnlyRichTextBox.ColorError);
@@ -468,25 +510,20 @@ namespace PS5CodeReader
                 LogBox.AppendLine(line);
 
             } while (!cancellationTokenSource.IsCancellationRequested);
-            //todo:
         }
 
+        /// <summary>
+        /// Run a list of commands saved in a text file. 
+        /// </summary>
+        /// <returns></returns>
         private async Task RunCommmandListAsync()
         {
-            Device? device = ComboBoxDevices.SelectedItem as Device;
-            if (device == default || errorCodeList == null) return;
-            var autoDetect = device.Port.StartsWith(StrAuto, StringComparison.InvariantCultureIgnoreCase);
-            if (autoDetect)
-            {
-                //todo: auto detect device and return it;
-                device = await AutoDetectDeviceAsync();
-            }
+            var device = await AutoDetectDeviceAsync();
             if (device == default)
             {
                 LogBox.AppendLine("[-] No Playstation 5 Detected!", ReadOnlyRichTextBox.ColorError);
                 return;
             }
-
             using var ofd = new OpenFileDialog();
             ofd.InitialDirectory = Directory.GetCurrentDirectory();
             ofd.RestoreDirectory = true;
@@ -496,34 +533,66 @@ namespace PS5CodeReader
             ofd.CheckFileExists = true;
             ofd.CheckPathExists = true;
             if (ofd.ShowDialog() != DialogResult.OK) return;
-            FileInfo file = new (ofd.FileName);
+            FileInfo file = new(ofd.FileName);
             using var stream = new StreamReader(file.FullName);
-            string? line = default;
+            string? command = default;
             cancellationTokenSource = new CancellationTokenSource();
             using var serial = new SerialPort(device.Port);
-            serial.Open(); 
+            serial.Open();
             do
             {
-                line = await stream.ReadLineAsync();
-                if (string.IsNullOrEmpty(line)) continue;
-                await serial.WriteLineAsync(line, cancellationTokenSource.Token);
+                command = await stream.ReadLineAsync();
+                if (string.IsNullOrEmpty(command)) continue;
+                await serial.WriteLineAsync(command, cancellationTokenSource.Token);
                 do
                 {
-                    try
-                    {
-                        line = await serial.ReadLineAsync(cancellationTokenSource.Token);
-                        LogBox.AppendLine(line);
-                    }
-                    catch
-                    {
-                       
-                    }
+                    var response = await serial.ReadLineAsync(cancellationTokenSource.Token);
+                    LogBox.AppendLine(response);
+
                 } while (serial.BytesToRead != 0);
             } while (!stream.EndOfStream);
         }
 
+
+        private readonly AsyncAutoResetEvent AutoResetEventRawCommand = new AsyncAutoResetEvent(false);
+        /// <summary>
+        /// Run raw command from user. Keeps port open.
+        /// </summary>
+        /// <returns></returns>
+        private async Task RunRawCommandAsync()
+        {
+            var device = await AutoDetectDeviceAsync();
+            if (device == default)
+            {
+                LogBox.AppendLine("[-] No Playstation 5 Detected!", ReadOnlyRichTextBox.ColorError);
+                return;
+            }
+            using var serial = new SerialPort(device.Port);
+            serial.Open();
+            do
+            {
+                cancellationTokenSource = new CancellationTokenSource();
+                await AutoResetEventRawCommand.WaitAsync(cancellationTokenSource.Token);
+                var command = TextBoxRawCommand.Text.Trim();
+                TextBoxRawCommand.Clear();
+                cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+                await serial.WriteLineAsync(command);
+                do
+                {
+                    var line = await serial.ReadLineAsync(cancellationTokenSource.Token);
+                    LogBox.AppendLine(line);
+                } while (serial.BytesToRead != 0);
+            } while (!cancellationTokenSource.IsCancellationRequested);
+        }
         #endregion
 
-        
+        private void TextBoxRawCommand_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!TextBoxRawCommand.Text.Any()) return; // dont send empty commands
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                AutoResetEventRawCommand.Set();
+            }
+        }
     }
 }

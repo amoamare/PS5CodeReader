@@ -1,22 +1,15 @@
-﻿using System.Runtime.InteropServices;
+﻿using static Vanara.PInvoke.User32;
 
 namespace PS5CodeReader
 {
     public class ReadOnlyRichTextBox : RichTextBox
     {
-
-        [DllImport("user32.dll")]
-        private static extern int HideCaret(IntPtr hwnd);
-
         internal static Color ColorError = Color.IndianRed;
         internal static Color ColorSuccess = Color.MediumSeaGreen;
         internal static Color ColorInformation = Color.DarkOrange;
 
         public ReadOnlyRichTextBox()
         {
-            MouseDown += ReadOnlyRichTextBox_Mouse;
-            MouseUp += ReadOnlyRichTextBox_Mouse;
-            Resize += ReadOnlyRichTextBox_Resize;
             ReadOnly = true;
             TabStop = false;
             _ = HideCaret(Handle);
@@ -24,62 +17,37 @@ namespace PS5CodeReader
 
         public override Color BackColor => Color.White;
 
-
-        protected override void OnGotFocus(EventArgs e)
-        {
-            _ = HideCaret(Handle);
-        }
-
-        protected override void OnEnter(EventArgs e)
-        {
-            _ = HideCaret(Handle);
-        }
-
-        private void ReadOnlyRichTextBox_Mouse(object sender, MouseEventArgs e)
-        {
-            _ = HideCaret(Handle);
-        }
-
-        private void InitializeComponent()
-        {
-            //
-            // ReadOnlyRichTextBox
-            //
-            Resize += ReadOnlyRichTextBox_Resize;
-            BorderStyle = BorderStyle.None;
-        }
-
-        private void ReadOnlyRichTextBox_Resize(object sender, EventArgs e)
-        {
-            _ = HideCaret(Handle);
-        }
-
         internal void AppendText(string text, Color color)
         {
             if (InvokeRequired)
             {
-                Invoke(new MethodInvoker(() => AppendText(text, color)));
+                _ = Invoke(new MethodInvoker(() => AppendText(text, color)));
                 return;
             }
 
             SelectionStart = TextLength;
             SelectionLength = 0;
             SelectionColor = color;
-            AppendText(text);
+            base.AppendText(text);
             SelectionColor = ForeColor;
-
             Select(Text.Length, 0);
             SelectionStart = Text.Length;
-
-            SelectionLength = 0; ;
+            SelectionLength = 0;
             ScrollToCaret();
+            
+        }
+
+
+        internal new void AppendText(string text)
+        {
+            AppendText(text, ForeColor);
         }
 
         internal void AppendLine(string text)
         {
             if (InvokeRequired)
             {
-                Invoke(new MethodInvoker(() => AppendLine(text)));
+                _ = Invoke(new MethodInvoker(() => AppendLine(text)));
                 return;
             }
             AppendText($"{text}{Environment.NewLine}");
@@ -109,7 +77,7 @@ namespace PS5CodeReader
         {
             if (InvokeRequired)
             {
-                Invoke(new MethodInvoker(() => Append(text)));
+                _ = Invoke(new MethodInvoker(() => Append(text)));
                 return;
             }
             AppendText(text);

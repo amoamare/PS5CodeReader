@@ -192,7 +192,7 @@ namespace PS5CodeReader
             return flag ? sb.ToString() : string.Empty;
         }
 
-        private static byte CalculateChecksum(string data)
+        internal static byte CalculateChecksum(string data)
         {
             var checksum = 0;
             checksum = Encoding.ASCII.GetBytes(data).Sum(x => x);

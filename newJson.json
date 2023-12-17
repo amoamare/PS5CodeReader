@@ -1,0 +1,4444 @@
+{
+  "Revision": "1.0.0.1",
+  "Description": "Updated core json to include revision and description of changes",
+  "PlayStation5": {
+	"PlayStationErrorCode": [
+	{
+	  "ID": "FFFFFFFF",
+	  "Message": "No Errors"
+	},
+	{
+	  "ID": "80000001",
+	  "Message": "Overheat or Init APU Error"
+	},
+	{
+	  "ID": "80000009",
+	  "Message": "Unexpected Power Cut or Shutdown Failure"
+	},
+	{
+	  "ID": "80050000",
+	  "Message": "APU VRM (2 Phases) Power Fail"
+	},
+	{
+	  "ID": "80060000",
+	  "Message": "APU VRM (6 Phases) Power Fail"
+	},
+	{
+	  "ID": "80800000",
+	  "Message": "Kernel Panic Shutdown"
+	},
+	{
+	  "ID": "80801510",
+	  "Message": "Known Unknown 249 (SSD) - Report Findings"
+	},
+	{
+	  "ID": "80800014",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "8080001A",
+	  "Message": "Non-Native TPM 2.0 Chip (After APU Init)"
+	},
+	{
+	  "ID": "80802081",
+	  "Message": "SSD Controller (Co-Processor) \u003C-\u003E APU Data Line Error"
+	},
+	{
+	  "ID": "80810001",
+	  "Message": "General Power Failure (Periphery, GDDR6, APU, Data Line Short)"
+	},
+	{
+	  "ID": "80830000",
+	  "Message": "Shutdown or Freeze After SAM_IPL Loaded - GDDR6 Data Line Issue (Replace)"
+	},
+	{
+	  "ID": "808300F0",
+	  "Message": "Secure Loader Error"
+	},
+	{
+	  "ID": "80870003",
+	  "Message": "Post Secure Loader Error"
+	},
+	{
+	  "ID": "80871001",
+	  "Message": "DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "80871054",
+	  "Message": "SSD Banks IO Error Between SSD Controller"
+	},
+	{
+	  "ID": "80871055",
+	  "Message": "SSD Banks IO Error Between SSD Controller"
+	},
+	{
+	  "ID": "80871062",
+	  "Message": "SSD Controller \u003C-\u003E Syscon (Bridge) Data Line Error"
+	},
+	{
+	  "ID": "80891001",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "80892003",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "8089400F",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "808B0098",
+	  "Message": "DDR4 Error (Communication Issue)"
+	},
+	{
+	  "ID": "808B0027",
+	  "Message": "Power Short 5V Line (F7002)"
+	},
+	{
+	  "ID": "808C3790",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "808C4F90",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "808C3F90",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "808C3090",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "808F0002",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "808F0003",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "80910200",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "80910800",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "80C00134",
+	  "Message": "SSD Banks Error"
+	},
+	{
+	  "ID": "80C00136",
+	  "Message": "WI-FI or BT Problem or Power Failure"
+	},
+	{
+	  "ID": "80C00140",
+	  "Message": "APU Freeze (No Response) - GDDR6 Data Line Issue (Replace)"
+	},
+	{
+	  "ID": "80D00402",
+	  "Message": "SSD Banks Error"
+	},
+	{
+	  "ID": "86000005",
+	  "Message": "NOR Corrupt - Regenerate With BwE PS5 NOR Tool"
+	},
+	{
+	  "ID": "86000006",
+	  "Message": "NOR Corrupt - Regenerate With BwE PS5 NOR Tool"
+	},
+	{
+	  "ID": "C0020103",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 1"
+	},
+	{
+	  "ID": "C0020203",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 2"
+	},
+	{
+	  "ID": "C0020303",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 3"
+	},
+	{
+	  "ID": "C00C0002",
+	  "Message": "VRM Controller Failure"
+	},
+	{
+	  "ID": "C0810002",
+	  "Message": "HDMI IC Problem or Power Failure"
+	},
+	{
+	  "ID": "C0810303",
+	  "Message": "HDMI IC Problem or Data Line Short or Power Failure"
+	},
+	{
+	  "ID": "E0000006",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "E0000005",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "E0000004",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "E0000003",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "E0000002",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "E0000001",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "808D0000",
+	  "Message": "Known Unknown 790 (Power) - Report Findings"
+	},
+	{
+	  "ID": "B0088108",
+	  "Message": "Known Unknown 810 (Chip or Data) - Report Findings"
+	},
+	{
+	  "ID": "808B00FF",
+	  "Message": "Known Unknown 823 (Power) - Report Findings"
+	},
+	{
+	  "ID": "80830018",
+	  "Message": "Known Unknown 846 (Power) - Report Findings"
+	},
+	{
+	  "ID": "B0082108",
+	  "Message": "Known Unknown 866 (Chip or Data - Report Findings"
+	},
+	{
+	  "ID": "0015442C",
+	  "Message": "Known Unknown 889 - Report Findings"
+	},
+	{
+	  "ID": "00100E3C",
+	  "Message": "Known Unknown 908 - Report Findings"
+	},
+	{
+	  "ID": "80C0012D",
+	  "Message": "Known Unknown 953 (Data) - Report Findings"
+	},
+	{
+	  "ID": "80097CE4",
+	  "Message": "Known Unknown 955 (APU Power) - Report Findings"
+	},
+	{
+	  "ID": "B0FFFFFF",
+	  "Message": "Known Unknown 104 - Report Findings"
+	},
+	{
+	  "ID": "80910002",
+	  "Message": "Known Unknown 114 (SSD Controller) - Report Findings"
+	},
+	{
+	  "ID": "808E829A",
+	  "Message": "Known Unknown 116 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "808E0109",
+	  "Message": "Known Unknown 118 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "808E0005",
+	  "Message": "Known Unknown 125 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "015E4E8B",
+	  "Message": "Known Unknown 163 (Rare) - Report Immediately"
+	},
+	{
+	  "ID": "C0900002",
+	  "Message": "Known Unknown 174 (HDMI) - Report Findings"
+	},
+	{
+	  "ID": "80060040",
+	  "Message": "Known Unknown 182 (APU or VRM) - Report Findings"
+	},
+	{
+	  "ID": "80801028",
+	  "Message": "Known Unknown 195 (SSD) - Report Findings"
+	},
+	{
+	  "ID": "C0160203",
+	  "Message": "Known Unknown 203 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "C0160303",
+	  "Message": "Known Unknown 238 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "C0900303",
+	  "Message": "Known Unknown 251 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "8000000C",
+	  "Message": "Known Unknown 303 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "80050020",
+	  "Message": "Known Unknown 304 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "80050040",
+	  "Message": "Known Unknown 370 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "80060020",
+	  "Message": "Known Unknown 386 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "8080001F",
+	  "Message": "Known Unknown 408 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "80800022",
+	  "Message": "Known Unknown 412 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "80800023",
+	  "Message": "Known Unknown 414 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "80800024",
+	  "Message": "Known Unknown 426 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "80801580",
+	  "Message": "Known Unknown 444 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "80802220",
+	  "Message": "Known Unknown 470 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "808B0000",
+	  "Message": "Known Unknown 474 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "808C4E90",
+	  "Message": "Known Unknown 516 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "B0085108",
+	  "Message": "Known Unknown 519 (Chip or Data) - Report Findings"
+	},
+	{
+	  "ID": "C0010303",
+	  "Message": "Known Unknown 525 (APU) - Report Findings"
+	},
+	{
+	  "ID": "C0920002",
+	  "Message": "Known Unknown 544 (APU) - Report Findings"
+	},
+	{
+	  "ID": "E1200000",
+	  "Message": "Known Unknown 545 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "E1201A50",
+	  "Message": "Known Unknown 568 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "E1E0061D",
+	  "Message": "Known Unknown 576 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "E1E0191D",
+	  "Message": "Known Unknown 581 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "E1E01C05",
+	  "Message": "Known Unknown 604 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "E1E01D06",
+	  "Message": "Known Unknown 618 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "E2200000",
+	  "Message": "Known Unknown 623 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "E2200116",
+	  "Message": "Known Unknown 637 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "E2E0191D",
+	  "Message": "Known Unknown 644 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "E2E01C06",
+	  "Message": "Known Unknown 653 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "E2E01D06",
+	  "Message": "Known Unknown 673 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "E31218E9",
+	  "Message": "Known Unknown 680 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "E3121F70",
+	  "Message": "Known Unknown 755 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "E312210A",
+	  "Message": "Known Unknown 759 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "8081001A",
+	  "Message": "Known Unknown 769 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "80C00114",
+	  "Message": "Known Unknown 779 (General Power Failure - SSD/APU Line) - Report Findings"
+	},
+	{
+	  "ID": "C00C0303",
+	  "Message": "Known Unknown 789 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "80802660",
+	  "Message": "Known Unknown 791 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "80802471",
+	  "Message": "Known Unknown 811 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "80802442",
+	  "Message": "Known Unknown 821 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "80802669",
+	  "Message": "Known Unknown 831 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "80801608",
+	  "Message": "Known Unknown 841 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "80801520",
+	  "Message": "Known Unknown 855 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "FFFFFFFF",
+	  "Message": "No Error"
+	},
+	{
+	  "ID": "Q12000001",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12000009",
+	  "Message": "Unexpected Power Cut or Shutdown Failure"
+	},
+	{
+	  "ID": "Q12050000",
+	  "Message": "APU VRM (2 Phases) Power Fail"
+	},
+	{
+	  "ID": "Q12060000",
+	  "Message": "APU VRM (6 Phases) Power Fail"
+	},
+	{
+	  "ID": "Q12800000",
+	  "Message": "Kernel Panic Shutdown"
+	},
+	{
+	  "ID": "Q12801510",
+	  "Message": "Known Unknown 249 (SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12800014",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "Q1280001A",
+	  "Message": "Non-Native TPM 2.0 Chip (After APU Init)"
+	},
+	{
+	  "ID": "Q12802081",
+	  "Message": "SSD Controller (Co-Processor) \u003C-\u003E APU Data Line Error"
+	},
+	{
+	  "ID": "Q12810001",
+	  "Message": "General Power Failure (Periphery, GDDR6, APU, Data Line Short)"
+	},
+	{
+	  "ID": "Q12830000",
+	  "Message": "Shutdown or Freeze After SAM_IPL Loaded - GDDR6 Data Line Issue (Replace)"
+	},
+	{
+	  "ID": "Q128300F0",
+	  "Message": "Secure Loader Error"
+	},
+	{
+	  "ID": "Q12870003",
+	  "Message": "Post Secure Loader Error"
+	},
+	{
+	  "ID": "Q12871001",
+	  "Message": "DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12871054",
+	  "Message": "SSD Banks IO Error Between SSD Controller"
+	},
+	{
+	  "ID": "Q12871055",
+	  "Message": "SSD Banks IO Error Between SSD Controller"
+	},
+	{
+	  "ID": "Q12871062",
+	  "Message": "SSD Controller \u003C-\u003E Syscon (Bridge) Data Line Error"
+	},
+	{
+	  "ID": "Q12891001",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12892003",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q1289400F",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q128B0098",
+	  "Message": "DDR4 Error (Communication Issue)"
+	},
+	{
+	  "ID": "Q128B0027",
+	  "Message": "Power Short 5V Line (F7002)"
+	},
+	{
+	  "ID": "Q128C3790",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q128C4F90",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q128C3F90",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q128C3090",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q128F0002",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "Q128F0003",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "Q12910200",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12910800",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12C00134",
+	  "Message": "SSD Banks Error"
+	},
+	{
+	  "ID": "Q12C00136",
+	  "Message": "WI-FI or BT Problem or Power Failure"
+	},
+	{
+	  "ID": "Q12C00140",
+	  "Message": "APU Freeze (No Response) - GDDR6 Data Line Issue (Replace)"
+	},
+	{
+	  "ID": "Q12D00402",
+	  "Message": "SSD Banks Error"
+	},
+	{
+	  "ID": "Q12000005",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12000006",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12020103",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 1"
+	},
+	{
+	  "ID": "Q12020203",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 2"
+	},
+	{
+	  "ID": "Q12020303",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 3"
+	},
+	{
+	  "ID": "Q120C0002",
+	  "Message": "VRM Controller Failure"
+	},
+	{
+	  "ID": "Q12810002",
+	  "Message": "HDMI IC Problem or Power Failure"
+	},
+	{
+	  "ID": "Q12810303",
+	  "Message": "HDMI IC Problem or Data Line Short or Power Failure"
+	},
+	{
+	  "ID": "Q12000004",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12000003",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12000002",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q128D0000",
+	  "Message": "Known Unknown 790 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12088108",
+	  "Message": "Known Unknown 810 (Chip or Data) - Report Findings"
+	},
+	{
+	  "ID": "Q128B00FF",
+	  "Message": "Known Unknown 823 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12830018",
+	  "Message": "Known Unknown 846 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12082108",
+	  "Message": "Known Unknown 866 (Chip or Data - Report Findings"
+	},
+	{
+	  "ID": "Q1215442C",
+	  "Message": "Known Unknown 889 - Report Findings"
+	},
+	{
+	  "ID": "Q12100E3C",
+	  "Message": "Known Unknown 908 - Report Findings"
+	},
+	{
+	  "ID": "Q12C0012D",
+	  "Message": "Known Unknown 953 (Data) - Report Findings"
+	},
+	{
+	  "ID": "Q12097CE4",
+	  "Message": "Known Unknown 955 (APU Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12FFFFFF",
+	  "Message": "No Error"
+	},
+	{
+	  "ID": "Q12910002",
+	  "Message": "Known Unknown 114 (SSD Controller) - Report Findings"
+	},
+	{
+	  "ID": "Q128E829A",
+	  "Message": "Known Unknown 116 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q128E0109",
+	  "Message": "Known Unknown 118 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q128E0005",
+	  "Message": "Known Unknown 125 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q125E4E8B",
+	  "Message": "Known Unknown 163 (Rare) - Report Immediately"
+	},
+	{
+	  "ID": "Q12900002",
+	  "Message": "Known Unknown 174 (HDMI) - Report Findings"
+	},
+	{
+	  "ID": "Q12060040",
+	  "Message": "Known Unknown 182 (APU or VRM) - Report Findings"
+	},
+	{
+	  "ID": "Q12801028",
+	  "Message": "Known Unknown 195 (SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12160203",
+	  "Message": "Known Unknown 203 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q12160303",
+	  "Message": "Known Unknown 238 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q12900303",
+	  "Message": "Known Unknown 251 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q1200000C",
+	  "Message": "Known Unknown 303 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12050020",
+	  "Message": "Known Unknown 304 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12050040",
+	  "Message": "Known Unknown 370 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12060020",
+	  "Message": "Known Unknown 386 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q1280001F",
+	  "Message": "Known Unknown 408 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12800022",
+	  "Message": "Known Unknown 412 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12800023",
+	  "Message": "Known Unknown 414 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12800024",
+	  "Message": "Known Unknown 426 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12801580",
+	  "Message": "Known Unknown 444 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12802220",
+	  "Message": "Known Unknown 470 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q128B0000",
+	  "Message": "Known Unknown 474 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q128C4E90",
+	  "Message": "Known Unknown 516 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12085108",
+	  "Message": "Known Unknown 519 (Chip or Data) - Report Findings"
+	},
+	{
+	  "ID": "Q12010303",
+	  "Message": "Known Unknown 525 (APU) - Report Findings"
+	},
+	{
+	  "ID": "Q12920002",
+	  "Message": "Known Unknown 544 (APU) - Report Findings"
+	},
+	{
+	  "ID": "Q12200000",
+	  "Message": "Known Unknown 623 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12201A50",
+	  "Message": "Known Unknown 568 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E0061D",
+	  "Message": "Known Unknown 576 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E0191D",
+	  "Message": "Known Unknown 644 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E01C05",
+	  "Message": "Known Unknown 604 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E01D06",
+	  "Message": "Known Unknown 673 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12200116",
+	  "Message": "Known Unknown 637 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E01C06",
+	  "Message": "Known Unknown 653 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q121218E9",
+	  "Message": "Known Unknown 680 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12121F70",
+	  "Message": "Known Unknown 755 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q1212210A",
+	  "Message": "Known Unknown 759 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q1281001A",
+	  "Message": "Known Unknown 769 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q12C00114",
+	  "Message": "Known Unknown 779 (General Power Failure - SSD/APU Line) - Report Findings"
+	},
+	{
+	  "ID": "Q120C0303",
+	  "Message": "Known Unknown 789 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q12802660",
+	  "Message": "Known Unknown 791 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12802471",
+	  "Message": "Known Unknown 811 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12802442",
+	  "Message": "Known Unknown 821 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12802669",
+	  "Message": "Known Unknown 831 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12801608",
+	  "Message": "Known Unknown 841 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "Q12801520",
+	  "Message": "Known Unknown 855 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "Q12130001",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12130009",
+	  "Message": "Unexpected Power Cut or Shutdown Failure"
+	},
+	{
+	  "ID": "Q12130000",
+	  "Message": "Known Unknown 623 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12131510",
+	  "Message": "Known Unknown 249 (SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12130014",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "Q1213001A",
+	  "Message": "Known Unknown 769 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q12132081",
+	  "Message": "SSD Controller (Co-Processor) \u003C-\u003E APU Data Line Error"
+	},
+	{
+	  "ID": "Q121300F0",
+	  "Message": "Secure Loader Error"
+	},
+	{
+	  "ID": "Q12130003",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12131001",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12131054",
+	  "Message": "SSD Banks IO Error Between SSD Controller"
+	},
+	{
+	  "ID": "Q12131055",
+	  "Message": "SSD Banks IO Error Between SSD Controller"
+	},
+	{
+	  "ID": "Q12131062",
+	  "Message": "SSD Controller \u003C-\u003E Syscon (Bridge) Data Line Error"
+	},
+	{
+	  "ID": "Q12132003",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q1213400F",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12130098",
+	  "Message": "DDR4 Error (Communication Issue)"
+	},
+	{
+	  "ID": "Q12130027",
+	  "Message": "Power Short 5V Line (F7002)"
+	},
+	{
+	  "ID": "Q12133790",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q12134F90",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q12133F90",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q12133090",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q12130002",
+	  "Message": "Known Unknown 544 (APU) - Report Findings"
+	},
+	{
+	  "ID": "Q12130200",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12130800",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12130134",
+	  "Message": "SSD Banks Error"
+	},
+	{
+	  "ID": "Q12130136",
+	  "Message": "WI-FI or BT Problem or Power Failure"
+	},
+	{
+	  "ID": "Q12130140",
+	  "Message": "APU Freeze (No Response) - GDDR6 Data Line Issue (Replace)"
+	},
+	{
+	  "ID": "Q12130402",
+	  "Message": "SSD Banks Error"
+	},
+	{
+	  "ID": "Q12130005",
+	  "Message": "Known Unknown 125 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q12130006",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12130103",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 1"
+	},
+	{
+	  "ID": "Q12130203",
+	  "Message": "Known Unknown 203 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q12130303",
+	  "Message": "Known Unknown 789 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q12130004",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12138108",
+	  "Message": "Known Unknown 810 (Chip or Data) - Report Findings"
+	},
+	{
+	  "ID": "Q121300FF",
+	  "Message": "Known Unknown 823 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12130018",
+	  "Message": "Known Unknown 846 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12132108",
+	  "Message": "Known Unknown 866 (Chip or Data - Report Findings"
+	},
+	{
+	  "ID": "Q1213442C",
+	  "Message": "Known Unknown 889 - Report Findings"
+	},
+	{
+	  "ID": "Q12130E3C",
+	  "Message": "Known Unknown 908 - Report Findings"
+	},
+	{
+	  "ID": "Q1213012D",
+	  "Message": "Known Unknown 953 (Data) - Report Findings"
+	},
+	{
+	  "ID": "Q12137CE4",
+	  "Message": "Known Unknown 955 (APU Power) - Report Findings"
+	},
+	{
+	  "ID": "Q1213FFFF",
+	  "Message": "Known Unknown 104 - Report Findings"
+	},
+	{
+	  "ID": "Q1213829A",
+	  "Message": "Known Unknown 116 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q12130109",
+	  "Message": "Known Unknown 118 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q12134E8B",
+	  "Message": "Known Unknown 163 (Rare) - Report Immediately"
+	},
+	{
+	  "ID": "Q12130040",
+	  "Message": "Known Unknown 370 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12131028",
+	  "Message": "Known Unknown 195 (SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q1213000C",
+	  "Message": "Known Unknown 303 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12130020",
+	  "Message": "Known Unknown 386 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q1213001F",
+	  "Message": "Known Unknown 408 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12130022",
+	  "Message": "Known Unknown 412 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12130023",
+	  "Message": "Known Unknown 414 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12130024",
+	  "Message": "Known Unknown 426 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12131580",
+	  "Message": "Known Unknown 444 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12132220",
+	  "Message": "Known Unknown 470 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12134E90",
+	  "Message": "Known Unknown 516 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12135108",
+	  "Message": "Known Unknown 519 (Chip or Data) - Report Findings"
+	},
+	{
+	  "ID": "Q12131A50",
+	  "Message": "Known Unknown 568 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q1213061D",
+	  "Message": "Known Unknown 576 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q1213191D",
+	  "Message": "Known Unknown 644 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12131C05",
+	  "Message": "Known Unknown 604 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12131D06",
+	  "Message": "Known Unknown 673 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12130116",
+	  "Message": "Known Unknown 637 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12131C06",
+	  "Message": "Known Unknown 653 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q121318E9",
+	  "Message": "Known Unknown 680 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12131F70",
+	  "Message": "Known Unknown 755 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q1213210A",
+	  "Message": "Known Unknown 759 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12130114",
+	  "Message": "Known Unknown 779 (General Power Failure - SSD/APU Line) - Report Findings"
+	},
+	{
+	  "ID": "Q12132660",
+	  "Message": "Known Unknown 791 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12132471",
+	  "Message": "Known Unknown 811 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12132442",
+	  "Message": "Known Unknown 821 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12132669",
+	  "Message": "Known Unknown 831 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12131608",
+	  "Message": "Known Unknown 841 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "Q12131520",
+	  "Message": "Known Unknown 855 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "Q12F14FFF",
+	  "Message": "Known Unknown 104 - Report Findings"
+	},
+	{
+	  "ID": "Q12014001",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12014009",
+	  "Message": "Unexpected Power Cut or Shutdown Failure"
+	},
+	{
+	  "ID": "Q12014000",
+	  "Message": "APU VRM (6 Phases) Power Fail"
+	},
+	{
+	  "ID": "Q12814000",
+	  "Message": "Known Unknown 474 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12814510",
+	  "Message": "Known Unknown 249 (SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12814014",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "Q1281401A",
+	  "Message": "Known Unknown 769 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q12814081",
+	  "Message": "SSD Controller (Co-Processor) \u003C-\u003E APU Data Line Error"
+	},
+	{
+	  "ID": "Q12814001",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q128140F0",
+	  "Message": "Secure Loader Error"
+	},
+	{
+	  "ID": "Q12814003",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "Q12814054",
+	  "Message": "SSD Banks IO Error Between SSD Controller"
+	},
+	{
+	  "ID": "Q12814055",
+	  "Message": "SSD Banks IO Error Between SSD Controller"
+	},
+	{
+	  "ID": "Q12814062",
+	  "Message": "SSD Controller \u003C-\u003E Syscon (Bridge) Data Line Error"
+	},
+	{
+	  "ID": "Q1281400F",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12814098",
+	  "Message": "DDR4 Error (Communication Issue)"
+	},
+	{
+	  "ID": "Q12814027",
+	  "Message": "Power Short 5V Line (F7002)"
+	},
+	{
+	  "ID": "Q12814790",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q12814F90",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q12814090",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q12814002",
+	  "Message": "HDMI IC Problem or Power Failure"
+	},
+	{
+	  "ID": "Q12914200",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12914800",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12C14134",
+	  "Message": "SSD Banks Error"
+	},
+	{
+	  "ID": "Q12C14136",
+	  "Message": "WI-FI or BT Problem or Power Failure"
+	},
+	{
+	  "ID": "Q12C14140",
+	  "Message": "APU Freeze (No Response) - GDDR6 Data Line Issue (Replace)"
+	},
+	{
+	  "ID": "Q12D14402",
+	  "Message": "SSD Banks Error"
+	},
+	{
+	  "ID": "Q12014005",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12014006",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12014103",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 1"
+	},
+	{
+	  "ID": "Q12014203",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 2"
+	},
+	{
+	  "ID": "Q12014303",
+	  "Message": "Known Unknown 789 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q12014002",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12814303",
+	  "Message": "HDMI IC Problem or Data Line Short or Power Failure"
+	},
+	{
+	  "ID": "Q12014004",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12014003",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12014108",
+	  "Message": "Known Unknown 519 (Chip or Data) - Report Findings"
+	},
+	{
+	  "ID": "Q128140FF",
+	  "Message": "Known Unknown 823 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12814018",
+	  "Message": "Known Unknown 846 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q1211442C",
+	  "Message": "Known Unknown 889 - Report Findings"
+	},
+	{
+	  "ID": "Q12114E3C",
+	  "Message": "Known Unknown 908 - Report Findings"
+	},
+	{
+	  "ID": "Q12C1412D",
+	  "Message": "Known Unknown 953 (Data) - Report Findings"
+	},
+	{
+	  "ID": "Q12014CE4",
+	  "Message": "Known Unknown 955 (APU Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12914002",
+	  "Message": "Known Unknown 544 (APU) - Report Findings"
+	},
+	{
+	  "ID": "Q1281429A",
+	  "Message": "Known Unknown 116 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q12814109",
+	  "Message": "Known Unknown 118 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q12814005",
+	  "Message": "Known Unknown 125 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q12514E8B",
+	  "Message": "Known Unknown 163 (Rare) - Report Immediately"
+	},
+	{
+	  "ID": "Q12014040",
+	  "Message": "Known Unknown 370 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12814028",
+	  "Message": "Known Unknown 195 (SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12114203",
+	  "Message": "Known Unknown 203 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q12114303",
+	  "Message": "Known Unknown 238 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q12914303",
+	  "Message": "Known Unknown 251 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q1201400C",
+	  "Message": "Known Unknown 303 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12014020",
+	  "Message": "Known Unknown 386 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q1281401F",
+	  "Message": "Known Unknown 408 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12814022",
+	  "Message": "Known Unknown 412 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12814023",
+	  "Message": "Known Unknown 414 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12814024",
+	  "Message": "Known Unknown 426 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12814580",
+	  "Message": "Known Unknown 444 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12814220",
+	  "Message": "Known Unknown 470 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12814E90",
+	  "Message": "Known Unknown 516 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12214000",
+	  "Message": "Known Unknown 623 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12214A50",
+	  "Message": "Known Unknown 568 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E1461D",
+	  "Message": "Known Unknown 576 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E1491D",
+	  "Message": "Known Unknown 644 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E14C05",
+	  "Message": "Known Unknown 604 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E14D06",
+	  "Message": "Known Unknown 673 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12214116",
+	  "Message": "Known Unknown 637 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E14C06",
+	  "Message": "Known Unknown 653 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q121148E9",
+	  "Message": "Known Unknown 680 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12114F70",
+	  "Message": "Known Unknown 755 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q1211410A",
+	  "Message": "Known Unknown 759 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12C14114",
+	  "Message": "Known Unknown 779 (General Power Failure - SSD/APU Line) - Report Findings"
+	},
+	{
+	  "ID": "Q12814660",
+	  "Message": "Known Unknown 791 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12814471",
+	  "Message": "Known Unknown 811 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12814442",
+	  "Message": "Known Unknown 821 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12814669",
+	  "Message": "Known Unknown 831 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12814608",
+	  "Message": "Known Unknown 841 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "Q12814520",
+	  "Message": "Known Unknown 855 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "Q12001501",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12001509",
+	  "Message": "Unexpected Power Cut or Shutdown Failure"
+	},
+	{
+	  "ID": "Q12051500",
+	  "Message": "APU VRM (2 Phases) Power Fail"
+	},
+	{
+	  "ID": "Q12061500",
+	  "Message": "APU VRM (6 Phases) Power Fail"
+	},
+	{
+	  "ID": "Q12801500",
+	  "Message": "Kernel Panic Shutdown"
+	},
+	{
+	  "ID": "Q12801514",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "Q1280151A",
+	  "Message": "Non-Native TPM 2.0 Chip (After APU Init)"
+	},
+	{
+	  "ID": "Q12801581",
+	  "Message": "SSD Controller (Co-Processor) \u003C-\u003E APU Data Line Error"
+	},
+	{
+	  "ID": "Q12811501",
+	  "Message": "General Power Failure (Periphery, GDDR6, APU, Data Line Short)"
+	},
+	{
+	  "ID": "Q12831500",
+	  "Message": "Shutdown or Freeze After SAM_IPL Loaded - GDDR6 Data Line Issue (Replace)"
+	},
+	{
+	  "ID": "Q128315F0",
+	  "Message": "Secure Loader Error"
+	},
+	{
+	  "ID": "Q12871503",
+	  "Message": "Post Secure Loader Error"
+	},
+	{
+	  "ID": "Q12871501",
+	  "Message": "DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12871554",
+	  "Message": "SSD Banks IO Error Between SSD Controller"
+	},
+	{
+	  "ID": "Q12871555",
+	  "Message": "SSD Banks IO Error Between SSD Controller"
+	},
+	{
+	  "ID": "Q12871562",
+	  "Message": "SSD Controller \u003C-\u003E Syscon (Bridge) Data Line Error"
+	},
+	{
+	  "ID": "Q12891501",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12891503",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q1289150F",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q128B1598",
+	  "Message": "DDR4 Error (Communication Issue)"
+	},
+	{
+	  "ID": "Q128B1527",
+	  "Message": "Power Short 5V Line (F7002)"
+	},
+	{
+	  "ID": "Q128C1590",
+	  "Message": "Known Unknown 516 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q128F1502",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "Q128F1503",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "Q12911500",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12C01534",
+	  "Message": "SSD Banks Error"
+	},
+	{
+	  "ID": "Q12C01536",
+	  "Message": "WI-FI or BT Problem or Power Failure"
+	},
+	{
+	  "ID": "Q12C01540",
+	  "Message": "APU Freeze (No Response) - GDDR6 Data Line Issue (Replace)"
+	},
+	{
+	  "ID": "Q12D01502",
+	  "Message": "SSD Banks Error"
+	},
+	{
+	  "ID": "Q12001505",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12001506",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12021503",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 3"
+	},
+	{
+	  "ID": "Q120C1502",
+	  "Message": "VRM Controller Failure"
+	},
+	{
+	  "ID": "Q12811502",
+	  "Message": "HDMI IC Problem or Power Failure"
+	},
+	{
+	  "ID": "Q12811503",
+	  "Message": "HDMI IC Problem or Data Line Short or Power Failure"
+	},
+	{
+	  "ID": "Q12001504",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12001503",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12001502",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q128D1500",
+	  "Message": "Known Unknown 790 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12081508",
+	  "Message": "Known Unknown 519 (Chip or Data) - Report Findings"
+	},
+	{
+	  "ID": "Q128B15FF",
+	  "Message": "Known Unknown 823 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12831518",
+	  "Message": "Known Unknown 846 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q1215152C",
+	  "Message": "Known Unknown 889 - Report Findings"
+	},
+	{
+	  "ID": "Q1210153C",
+	  "Message": "Known Unknown 908 - Report Findings"
+	},
+	{
+	  "ID": "Q12C0152D",
+	  "Message": "Known Unknown 953 (Data) - Report Findings"
+	},
+	{
+	  "ID": "Q120915E4",
+	  "Message": "Known Unknown 955 (APU Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF15FF",
+	  "Message": "No Error"
+	},
+	{
+	  "ID": "Q12911502",
+	  "Message": "Known Unknown 114 (SSD Controller) - Report Findings"
+	},
+	{
+	  "ID": "Q128E159A",
+	  "Message": "Known Unknown 116 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q128E1509",
+	  "Message": "Known Unknown 118 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q128E1505",
+	  "Message": "Known Unknown 125 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q125E158B",
+	  "Message": "Known Unknown 163 (Rare) - Report Immediately"
+	},
+	{
+	  "ID": "Q12901502",
+	  "Message": "Known Unknown 174 (HDMI) - Report Findings"
+	},
+	{
+	  "ID": "Q12061540",
+	  "Message": "Known Unknown 182 (APU or VRM) - Report Findings"
+	},
+	{
+	  "ID": "Q12801528",
+	  "Message": "Known Unknown 195 (SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12161503",
+	  "Message": "Known Unknown 238 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q12901503",
+	  "Message": "Known Unknown 251 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q1200150C",
+	  "Message": "Known Unknown 303 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12051520",
+	  "Message": "Known Unknown 304 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12051540",
+	  "Message": "Known Unknown 370 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12061520",
+	  "Message": "Known Unknown 386 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q1280151F",
+	  "Message": "Known Unknown 408 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12801522",
+	  "Message": "Known Unknown 412 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12801523",
+	  "Message": "Known Unknown 414 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12801524",
+	  "Message": "Known Unknown 426 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q128B1500",
+	  "Message": "Known Unknown 474 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12011503",
+	  "Message": "Known Unknown 525 (APU) - Report Findings"
+	},
+	{
+	  "ID": "Q12921502",
+	  "Message": "Known Unknown 544 (APU) - Report Findings"
+	},
+	{
+	  "ID": "Q12201500",
+	  "Message": "Known Unknown 623 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12201550",
+	  "Message": "Known Unknown 568 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E0151D",
+	  "Message": "Known Unknown 644 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E01505",
+	  "Message": "Known Unknown 604 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E01506",
+	  "Message": "Known Unknown 673 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12201516",
+	  "Message": "Known Unknown 637 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q121215E9",
+	  "Message": "Known Unknown 680 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12121570",
+	  "Message": "Known Unknown 755 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q1212150A",
+	  "Message": "Known Unknown 759 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q1281151A",
+	  "Message": "Known Unknown 769 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q12C01514",
+	  "Message": "Known Unknown 779 (General Power Failure - SSD/APU Line) - Report Findings"
+	},
+	{
+	  "ID": "Q120C1503",
+	  "Message": "Known Unknown 789 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q12801560",
+	  "Message": "Known Unknown 791 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12801571",
+	  "Message": "Known Unknown 811 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12801542",
+	  "Message": "Known Unknown 821 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12801569",
+	  "Message": "Known Unknown 831 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12801508",
+	  "Message": "Known Unknown 841 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "Q12000016",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12050016",
+	  "Message": "APU VRM (2 Phases) Power Fail"
+	},
+	{
+	  "ID": "Q12060016",
+	  "Message": "APU VRM (6 Phases) Power Fail"
+	},
+	{
+	  "ID": "Q12800016",
+	  "Message": "Non-Native TPM 2.0 Chip (After APU Init)"
+	},
+	{
+	  "ID": "Q12801516",
+	  "Message": "Kernel Panic Shutdown - Reball APU"
+	},
+	{
+	  "ID": "Q12802016",
+	  "Message": "SSD Controller (Co-Processor) \u003C-\u003E APU Data Line Error"
+	},
+	{
+	  "ID": "Q12810016",
+	  "Message": "HDMI IC Problem or Power Failure"
+	},
+	{
+	  "ID": "Q12830016",
+	  "Message": "Known Unknown 846 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12870016",
+	  "Message": "Post Secure Loader Error"
+	},
+	{
+	  "ID": "Q12871016",
+	  "Message": "SSD Controller \u003C-\u003E Syscon (Bridge) Data Line Error"
+	},
+	{
+	  "ID": "Q12891016",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12892016",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12894016",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q128B0016",
+	  "Message": "Known Unknown 823 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q128C3716",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q128C4F16",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q128C3F16",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q128C3016",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q128F0016",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "Q12910216",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12910816",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12C00116",
+	  "Message": "Known Unknown 953 (Data) - Report Findings"
+	},
+	{
+	  "ID": "Q12D00416",
+	  "Message": "SSD Banks Error"
+	},
+	{
+	  "ID": "Q12020116",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 1"
+	},
+	{
+	  "ID": "Q12020216",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 2"
+	},
+	{
+	  "ID": "Q12020316",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 3"
+	},
+	{
+	  "ID": "Q120C0016",
+	  "Message": "VRM Controller Failure"
+	},
+	{
+	  "ID": "Q12810316",
+	  "Message": "HDMI IC Problem or Data Line Short or Power Failure"
+	},
+	{
+	  "ID": "Q128D0016",
+	  "Message": "Known Unknown 790 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12088116",
+	  "Message": "Known Unknown 810 (Chip or Data) - Report Findings"
+	},
+	{
+	  "ID": "Q12082116",
+	  "Message": "Known Unknown 866 (Chip or Data - Report Findings"
+	},
+	{
+	  "ID": "Q12154416",
+	  "Message": "Known Unknown 889 - Report Findings"
+	},
+	{
+	  "ID": "Q12100E16",
+	  "Message": "Known Unknown 908 - Report Findings"
+	},
+	{
+	  "ID": "Q12097C16",
+	  "Message": "Known Unknown 955 (APU Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12FFFF16",
+	  "Message": "No Error"
+	},
+	{
+	  "ID": "Q12910016",
+	  "Message": "Known Unknown 114 (SSD Controller) - Report Findings"
+	},
+	{
+	  "ID": "Q128E8216",
+	  "Message": "Known Unknown 116 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q128E0116",
+	  "Message": "Known Unknown 118 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q128E0016",
+	  "Message": "Known Unknown 125 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q125E4E16",
+	  "Message": "Known Unknown 163 (Rare) - Report Immediately"
+	},
+	{
+	  "ID": "Q12900016",
+	  "Message": "Known Unknown 174 (HDMI) - Report Findings"
+	},
+	{
+	  "ID": "Q12801016",
+	  "Message": "Known Unknown 195 (SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12160216",
+	  "Message": "Known Unknown 203 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q12160316",
+	  "Message": "Known Unknown 238 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q12900316",
+	  "Message": "Known Unknown 251 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q12802216",
+	  "Message": "Known Unknown 470 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q128C4E16",
+	  "Message": "Known Unknown 516 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12085116",
+	  "Message": "Known Unknown 519 (Chip or Data) - Report Findings"
+	},
+	{
+	  "ID": "Q12010316",
+	  "Message": "Known Unknown 525 (APU) - Report Findings"
+	},
+	{
+	  "ID": "Q12920016",
+	  "Message": "Known Unknown 544 (APU) - Report Findings"
+	},
+	{
+	  "ID": "Q12200016",
+	  "Message": "Known Unknown 623 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12201A16",
+	  "Message": "Known Unknown 568 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E00616",
+	  "Message": "Known Unknown 576 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E01916",
+	  "Message": "Known Unknown 644 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E01C16",
+	  "Message": "Known Unknown 653 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E01D16",
+	  "Message": "Known Unknown 673 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12121816",
+	  "Message": "Known Unknown 680 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12121F16",
+	  "Message": "Known Unknown 755 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12122116",
+	  "Message": "Known Unknown 759 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q120C0316",
+	  "Message": "Known Unknown 789 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q12802616",
+	  "Message": "Known Unknown 831 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12802416",
+	  "Message": "Known Unknown 821 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12801616",
+	  "Message": "Known Unknown 841 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "Q12F16FFF",
+	  "Message": "No Error"
+	},
+	{
+	  "ID": "Q12916002",
+	  "Message": "Known Unknown 544 (APU) - Report Findings"
+	},
+	{
+	  "ID": "Q1281629A",
+	  "Message": "Known Unknown 116 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q12816109",
+	  "Message": "Known Unknown 118 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q12816005",
+	  "Message": "Known Unknown 125 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q12516E8B",
+	  "Message": "Known Unknown 163 (Rare) - Report Immediately"
+	},
+	{
+	  "ID": "Q12016040",
+	  "Message": "Known Unknown 370 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12816028",
+	  "Message": "Known Unknown 195 (SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12116203",
+	  "Message": "Known Unknown 203 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q12116303",
+	  "Message": "Known Unknown 238 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q12816510",
+	  "Message": "Known Unknown 249 (SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12916303",
+	  "Message": "Known Unknown 251 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q1201600C",
+	  "Message": "Known Unknown 303 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12016020",
+	  "Message": "Known Unknown 386 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q1281601F",
+	  "Message": "Known Unknown 408 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12816022",
+	  "Message": "Known Unknown 412 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12816023",
+	  "Message": "Known Unknown 414 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12816024",
+	  "Message": "Known Unknown 426 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12816580",
+	  "Message": "Known Unknown 444 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12816220",
+	  "Message": "Known Unknown 470 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12816000",
+	  "Message": "Known Unknown 474 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12816E90",
+	  "Message": "Known Unknown 516 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12016108",
+	  "Message": "Known Unknown 519 (Chip or Data) - Report Findings"
+	},
+	{
+	  "ID": "Q12016303",
+	  "Message": "Known Unknown 789 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q12216000",
+	  "Message": "Known Unknown 623 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12216A50",
+	  "Message": "Known Unknown 568 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E1661D",
+	  "Message": "Known Unknown 576 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E1691D",
+	  "Message": "Known Unknown 644 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E16C05",
+	  "Message": "Known Unknown 604 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E16D06",
+	  "Message": "Known Unknown 673 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12216116",
+	  "Message": "Known Unknown 637 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E16C06",
+	  "Message": "Known Unknown 653 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q121168E9",
+	  "Message": "Known Unknown 680 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12116F70",
+	  "Message": "Known Unknown 755 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q1211610A",
+	  "Message": "Known Unknown 759 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q1281601A",
+	  "Message": "Known Unknown 769 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q12C16114",
+	  "Message": "Known Unknown 779 (General Power Failure - SSD/APU Line) - Report Findings"
+	},
+	{
+	  "ID": "Q12816660",
+	  "Message": "Known Unknown 791 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12816471",
+	  "Message": "Known Unknown 811 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12816442",
+	  "Message": "Known Unknown 821 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12816669",
+	  "Message": "Known Unknown 831 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12816608",
+	  "Message": "Known Unknown 841 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "Q12816520",
+	  "Message": "Known Unknown 855 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "Q12000551",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12000559",
+	  "Message": "Unexpected Power Cut or Shutdown Failure"
+	},
+	{
+	  "ID": "Q12050550",
+	  "Message": "Known Unknown 370 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12060550",
+	  "Message": "Known Unknown 386 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12800550",
+	  "Message": "Kernel Panic Shutdown"
+	},
+	{
+	  "ID": "Q12801550",
+	  "Message": "Known Unknown 855 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "Q12800554",
+	  "Message": "Known Unknown 426 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q1280055A",
+	  "Message": "Non-Native TPM 2.0 Chip (After APU Init)"
+	},
+	{
+	  "ID": "Q12802551",
+	  "Message": "Known Unknown 811 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12810551",
+	  "Message": "General Power Failure (Periphery, GDDR6, APU, Data Line Short)"
+	},
+	{
+	  "ID": "Q12830550",
+	  "Message": "Secure Loader Error"
+	},
+	{
+	  "ID": "Q12870553",
+	  "Message": "Post Secure Loader Error"
+	},
+	{
+	  "ID": "Q12871551",
+	  "Message": "DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12871552",
+	  "Message": "SSD Controller \u003C-\u003E Syscon (Bridge) Data Line Error"
+	},
+	{
+	  "ID": "Q12891551",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12892553",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q1289455F",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q128B0558",
+	  "Message": "DDR4 Error (Communication Issue)"
+	},
+	{
+	  "ID": "Q128B0557",
+	  "Message": "Power Short 5V Line (F7002)"
+	},
+	{
+	  "ID": "Q128C3550",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q128C4550",
+	  "Message": "Known Unknown 516 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q128F0552",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "Q128F0553",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "Q12910550",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12C00554",
+	  "Message": "Known Unknown 779 (General Power Failure - SSD/APU Line) - Report Findings"
+	},
+	{
+	  "ID": "Q12C00556",
+	  "Message": "WI-FI or BT Problem or Power Failure"
+	},
+	{
+	  "ID": "Q12C00550",
+	  "Message": "APU Freeze (No Response) - GDDR6 Data Line Issue (Replace)"
+	},
+	{
+	  "ID": "Q12D00552",
+	  "Message": "SSD Banks Error"
+	},
+	{
+	  "ID": "Q12000555",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12000556",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12020553",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 3"
+	},
+	{
+	  "ID": "Q120C0552",
+	  "Message": "VRM Controller Failure"
+	},
+	{
+	  "ID": "Q12810552",
+	  "Message": "HDMI IC Problem or Power Failure"
+	},
+	{
+	  "ID": "Q12810553",
+	  "Message": "HDMI IC Problem or Data Line Short or Power Failure"
+	},
+	{
+	  "ID": "Q12000554",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12000553",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12000552",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q128D0550",
+	  "Message": "Known Unknown 790 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12088558",
+	  "Message": "Known Unknown 810 (Chip or Data) - Report Findings"
+	},
+	{
+	  "ID": "Q128B055F",
+	  "Message": "Known Unknown 823 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12830558",
+	  "Message": "Known Unknown 846 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12082558",
+	  "Message": "Known Unknown 866 (Chip or Data - Report Findings"
+	},
+	{
+	  "ID": "Q1215455C",
+	  "Message": "Known Unknown 889 - Report Findings"
+	},
+	{
+	  "ID": "Q1210055C",
+	  "Message": "Known Unknown 908 - Report Findings"
+	},
+	{
+	  "ID": "Q12C0055D",
+	  "Message": "Known Unknown 953 (Data) - Report Findings"
+	},
+	{
+	  "ID": "Q12097554",
+	  "Message": "Known Unknown 955 (APU Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12FFF55F",
+	  "Message": "No Error"
+	},
+	{
+	  "ID": "Q12910552",
+	  "Message": "Known Unknown 114 (SSD Controller) - Report Findings"
+	},
+	{
+	  "ID": "Q128E855A",
+	  "Message": "Known Unknown 116 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q128E0559",
+	  "Message": "Known Unknown 118 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q128E0555",
+	  "Message": "Known Unknown 125 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q125E455B",
+	  "Message": "Known Unknown 163 (Rare) - Report Immediately"
+	},
+	{
+	  "ID": "Q12900552",
+	  "Message": "Known Unknown 174 (HDMI) - Report Findings"
+	},
+	{
+	  "ID": "Q12801558",
+	  "Message": "Known Unknown 841 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "Q12160553",
+	  "Message": "Known Unknown 238 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q12900553",
+	  "Message": "Known Unknown 251 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q1200055C",
+	  "Message": "Known Unknown 303 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q1280055F",
+	  "Message": "Known Unknown 408 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12800552",
+	  "Message": "Known Unknown 412 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12800553",
+	  "Message": "Known Unknown 414 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12802550",
+	  "Message": "Known Unknown 791 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q128B0550",
+	  "Message": "Known Unknown 474 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12085558",
+	  "Message": "Known Unknown 519 (Chip or Data) - Report Findings"
+	},
+	{
+	  "ID": "Q12010553",
+	  "Message": "Known Unknown 525 (APU) - Report Findings"
+	},
+	{
+	  "ID": "Q12920552",
+	  "Message": "Known Unknown 544 (APU) - Report Findings"
+	},
+	{
+	  "ID": "Q12200550",
+	  "Message": "Known Unknown 623 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E0055D",
+	  "Message": "Known Unknown 576 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E0155D",
+	  "Message": "Known Unknown 644 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E01555",
+	  "Message": "Known Unknown 604 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E01556",
+	  "Message": "Known Unknown 673 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12200556",
+	  "Message": "Known Unknown 637 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12121559",
+	  "Message": "Known Unknown 680 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12121550",
+	  "Message": "Known Unknown 755 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q1212255A",
+	  "Message": "Known Unknown 759 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q1281055A",
+	  "Message": "Known Unknown 769 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q120C0553",
+	  "Message": "Known Unknown 789 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q12802552",
+	  "Message": "Known Unknown 821 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12802559",
+	  "Message": "Known Unknown 831 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q13000001",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q13000009",
+	  "Message": "Unexpected Power Cut or Shutdown Failure"
+	},
+	{
+	  "ID": "Q13050000",
+	  "Message": "APU VRM (2 Phases) Power Fail"
+	},
+	{
+	  "ID": "Q13060000",
+	  "Message": "APU VRM (6 Phases) Power Fail"
+	},
+	{
+	  "ID": "Q13800000",
+	  "Message": "Kernel Panic Shutdown"
+	},
+	{
+	  "ID": "Q13801510",
+	  "Message": "Known Unknown 249 (SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q13800014",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "Q1380001A",
+	  "Message": "Non-Native TPM 2.0 Chip (After APU Init)"
+	},
+	{
+	  "ID": "Q13802081",
+	  "Message": "SSD Controller (Co-Processor) \u003C-\u003E APU Data Line Error"
+	},
+	{
+	  "ID": "Q13810001",
+	  "Message": "General Power Failure (Periphery, GDDR6, APU, Data Line Short)"
+	},
+	{
+	  "ID": "Q13830000",
+	  "Message": "Shutdown or Freeze After SAM_IPL Loaded - GDDR6 Data Line Issue (Replace)"
+	},
+	{
+	  "ID": "Q138300F0",
+	  "Message": "Secure Loader Error"
+	},
+	{
+	  "ID": "Q13870003",
+	  "Message": "Post Secure Loader Error"
+	},
+	{
+	  "ID": "Q13871001",
+	  "Message": "DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q13871054",
+	  "Message": "SSD Banks IO Error Between SSD Controller"
+	},
+	{
+	  "ID": "Q13871055",
+	  "Message": "SSD Banks IO Error Between SSD Controller"
+	},
+	{
+	  "ID": "Q13871062",
+	  "Message": "SSD Controller \u003C-\u003E Syscon (Bridge) Data Line Error"
+	},
+	{
+	  "ID": "Q13891001",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q13892003",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q1389400F",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q138B0098",
+	  "Message": "DDR4 Error (Communication Issue)"
+	},
+	{
+	  "ID": "Q138B0027",
+	  "Message": "Power Short 5V Line (F7002)"
+	},
+	{
+	  "ID": "Q138C3790",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q138C4F90",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q138C3F90",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q138C3090",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q138F0002",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "Q138F0003",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "Q13910200",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q13910800",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q13C00134",
+	  "Message": "SSD Banks Error"
+	},
+	{
+	  "ID": "Q13C00136",
+	  "Message": "WI-FI or BT Problem or Power Failure"
+	},
+	{
+	  "ID": "Q13C00140",
+	  "Message": "APU Freeze (No Response) - GDDR6 Data Line Issue (Replace)"
+	},
+	{
+	  "ID": "Q13D00402",
+	  "Message": "SSD Banks Error"
+	},
+	{
+	  "ID": "Q13000005",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q13000006",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q13020103",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 1"
+	},
+	{
+	  "ID": "Q13020203",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 2"
+	},
+	{
+	  "ID": "Q13020303",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 3"
+	},
+	{
+	  "ID": "Q130C0002",
+	  "Message": "VRM Controller Failure"
+	},
+	{
+	  "ID": "Q13810002",
+	  "Message": "HDMI IC Problem or Power Failure"
+	},
+	{
+	  "ID": "Q13810303",
+	  "Message": "HDMI IC Problem or Data Line Short or Power Failure"
+	},
+	{
+	  "ID": "Q13000004",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q13000003",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q13000002",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q138D0000",
+	  "Message": "Known Unknown 790 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q13088108",
+	  "Message": "Known Unknown 810 (Chip or Data) - Report Findings"
+	},
+	{
+	  "ID": "Q138B00FF",
+	  "Message": "Known Unknown 823 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q13830018",
+	  "Message": "Known Unknown 846 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q13082108",
+	  "Message": "Known Unknown 866 (Chip or Data - Report Findings"
+	},
+	{
+	  "ID": "Q1315442C",
+	  "Message": "Known Unknown 889 - Report Findings"
+	},
+	{
+	  "ID": "Q13100E3C",
+	  "Message": "Known Unknown 908 - Report Findings"
+	},
+	{
+	  "ID": "Q13C0012D",
+	  "Message": "Known Unknown 953 (Data) - Report Findings"
+	},
+	{
+	  "ID": "Q13097CE4",
+	  "Message": "Known Unknown 955 (APU Power) - Report Findings"
+	},
+	{
+	  "ID": "Q13FFFFFF",
+	  "Message": "No Error"
+	},
+	{
+	  "ID": "Q13910002",
+	  "Message": "Known Unknown 114 (SSD Controller) - Report Findings"
+	},
+	{
+	  "ID": "Q138E829A",
+	  "Message": "Known Unknown 116 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q138E0109",
+	  "Message": "Known Unknown 118 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q138E0005",
+	  "Message": "Known Unknown 125 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q135E4E8B",
+	  "Message": "Known Unknown 163 (Rare) - Report Immediately"
+	},
+	{
+	  "ID": "Q13900002",
+	  "Message": "Known Unknown 174 (HDMI) - Report Findings"
+	},
+	{
+	  "ID": "Q13060040",
+	  "Message": "Known Unknown 182 (APU or VRM) - Report Findings"
+	},
+	{
+	  "ID": "Q13801028",
+	  "Message": "Known Unknown 195 (SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q13160203",
+	  "Message": "Known Unknown 203 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q13160303",
+	  "Message": "Known Unknown 238 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q13900303",
+	  "Message": "Known Unknown 251 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q1300000C",
+	  "Message": "Known Unknown 303 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q13050020",
+	  "Message": "Known Unknown 304 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q13050040",
+	  "Message": "Known Unknown 370 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q13060020",
+	  "Message": "Known Unknown 386 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q1380001F",
+	  "Message": "Known Unknown 408 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q13800022",
+	  "Message": "Known Unknown 412 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q13800023",
+	  "Message": "Known Unknown 414 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q13800024",
+	  "Message": "Known Unknown 426 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q13801580",
+	  "Message": "Known Unknown 444 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q13802220",
+	  "Message": "Known Unknown 470 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q138B0000",
+	  "Message": "Known Unknown 474 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q138C4E90",
+	  "Message": "Known Unknown 516 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q13085108",
+	  "Message": "Known Unknown 519 (Chip or Data) - Report Findings"
+	},
+	{
+	  "ID": "Q13010303",
+	  "Message": "Known Unknown 525 (APU) - Report Findings"
+	},
+	{
+	  "ID": "Q13920002",
+	  "Message": "Known Unknown 544 (APU) - Report Findings"
+	},
+	{
+	  "ID": "Q13200000",
+	  "Message": "Known Unknown 623 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q13201A50",
+	  "Message": "Known Unknown 568 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q13E0061D",
+	  "Message": "Known Unknown 576 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q13E0191D",
+	  "Message": "Known Unknown 644 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q13E01C05",
+	  "Message": "Known Unknown 604 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q13E01D06",
+	  "Message": "Known Unknown 673 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q13200116",
+	  "Message": "Known Unknown 637 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q13E01C06",
+	  "Message": "Known Unknown 653 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q131218E9",
+	  "Message": "Known Unknown 680 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q13121F70",
+	  "Message": "Known Unknown 755 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q1312210A",
+	  "Message": "Known Unknown 759 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q1381001A",
+	  "Message": "Known Unknown 769 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q13C00114",
+	  "Message": "Known Unknown 779 (General Power Failure - SSD/APU Line) - Report Findings"
+	},
+	{
+	  "ID": "Q130C0303",
+	  "Message": "Known Unknown 789 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q13802660",
+	  "Message": "Known Unknown 791 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q13802471",
+	  "Message": "Known Unknown 811 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q13802442",
+	  "Message": "Known Unknown 821 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q13802669",
+	  "Message": "Known Unknown 831 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q13801608",
+	  "Message": "Known Unknown 841 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "Q13801520",
+	  "Message": "Known Unknown 855 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF0001",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12FF0009",
+	  "Message": "Unexpected Power Cut or Shutdown Failure"
+	},
+	{
+	  "ID": "Q12FF0000",
+	  "Message": "Known Unknown 623 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12FF1510",
+	  "Message": "Known Unknown 249 (SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF0014",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "Q12FF001A",
+	  "Message": "Known Unknown 769 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF2081",
+	  "Message": "SSD Controller (Co-Processor) \u003C-\u003E APU Data Line Error"
+	},
+	{
+	  "ID": "Q12FF00F0",
+	  "Message": "Secure Loader Error"
+	},
+	{
+	  "ID": "Q12FF0003",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12FF1001",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12FF1054",
+	  "Message": "SSD Banks IO Error Between SSD Controller"
+	},
+	{
+	  "ID": "Q12FF1055",
+	  "Message": "SSD Banks IO Error Between SSD Controller"
+	},
+	{
+	  "ID": "Q12FF1062",
+	  "Message": "SSD Controller \u003C-\u003E Syscon (Bridge) Data Line Error"
+	},
+	{
+	  "ID": "Q12FF2003",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12FF400F",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12FF0098",
+	  "Message": "DDR4 Error (Communication Issue)"
+	},
+	{
+	  "ID": "Q12FF0027",
+	  "Message": "Power Short 5V Line (F7002)"
+	},
+	{
+	  "ID": "Q12FF3790",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q12FF4F90",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q12FF3F90",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q12FF3090",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q12FF0002",
+	  "Message": "Known Unknown 544 (APU) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF0200",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12FF0800",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12FF0134",
+	  "Message": "SSD Banks Error"
+	},
+	{
+	  "ID": "Q12FF0136",
+	  "Message": "WI-FI or BT Problem or Power Failure"
+	},
+	{
+	  "ID": "Q12FF0140",
+	  "Message": "APU Freeze (No Response) - GDDR6 Data Line Issue (Replace)"
+	},
+	{
+	  "ID": "Q12FF0402",
+	  "Message": "SSD Banks Error"
+	},
+	{
+	  "ID": "Q12FF0005",
+	  "Message": "Known Unknown 125 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF0006",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12FF0103",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 1"
+	},
+	{
+	  "ID": "Q12FF0203",
+	  "Message": "Known Unknown 203 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF0303",
+	  "Message": "Known Unknown 789 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF0004",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12FF8108",
+	  "Message": "Known Unknown 810 (Chip or Data) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF00FF",
+	  "Message": "Known Unknown 823 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF0018",
+	  "Message": "Known Unknown 846 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF2108",
+	  "Message": "Known Unknown 866 (Chip or Data - Report Findings"
+	},
+	{
+	  "ID": "Q12FF442C",
+	  "Message": "Known Unknown 889 - Report Findings"
+	},
+	{
+	  "ID": "Q12FF0E3C",
+	  "Message": "Known Unknown 908 - Report Findings"
+	},
+	{
+	  "ID": "Q12FF012D",
+	  "Message": "Known Unknown 953 (Data) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF7CE4",
+	  "Message": "Known Unknown 955 (APU Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF829A",
+	  "Message": "Known Unknown 116 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF0109",
+	  "Message": "Known Unknown 118 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF4E8B",
+	  "Message": "Known Unknown 163 (Rare) - Report Immediately"
+	},
+	{
+	  "ID": "Q12FF0040",
+	  "Message": "Known Unknown 370 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF1028",
+	  "Message": "Known Unknown 195 (SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF000C",
+	  "Message": "Known Unknown 303 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF0020",
+	  "Message": "Known Unknown 386 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF001F",
+	  "Message": "Known Unknown 408 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF0022",
+	  "Message": "Known Unknown 412 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF0023",
+	  "Message": "Known Unknown 414 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF0024",
+	  "Message": "Known Unknown 426 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF1580",
+	  "Message": "Known Unknown 444 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF2220",
+	  "Message": "Known Unknown 470 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF4E90",
+	  "Message": "Known Unknown 516 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF5108",
+	  "Message": "Known Unknown 519 (Chip or Data) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF1A50",
+	  "Message": "Known Unknown 568 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12FF061D",
+	  "Message": "Known Unknown 576 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12FF191D",
+	  "Message": "Known Unknown 644 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12FF1C05",
+	  "Message": "Known Unknown 604 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12FF1D06",
+	  "Message": "Known Unknown 673 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12FF0116",
+	  "Message": "Known Unknown 637 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12FF1C06",
+	  "Message": "Known Unknown 653 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12FF18E9",
+	  "Message": "Known Unknown 680 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12FF1F70",
+	  "Message": "Known Unknown 755 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12FF210A",
+	  "Message": "Known Unknown 759 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12FF0114",
+	  "Message": "Known Unknown 779 (General Power Failure - SSD/APU Line) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF2660",
+	  "Message": "Known Unknown 791 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF2471",
+	  "Message": "Known Unknown 811 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF2442",
+	  "Message": "Known Unknown 821 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF2669",
+	  "Message": "Known Unknown 831 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF1608",
+	  "Message": "Known Unknown 841 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF1520",
+	  "Message": "Known Unknown 855 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "Q12033001",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12033009",
+	  "Message": "Unexpected Power Cut or Shutdown Failure"
+	},
+	{
+	  "ID": "Q12033000",
+	  "Message": "APU VRM (6 Phases) Power Fail"
+	},
+	{
+	  "ID": "Q12833000",
+	  "Message": "Known Unknown 474 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12833510",
+	  "Message": "Known Unknown 249 (SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12833014",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "Q1283301A",
+	  "Message": "Known Unknown 769 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q12833081",
+	  "Message": "SSD Controller (Co-Processor) \u003C-\u003E APU Data Line Error"
+	},
+	{
+	  "ID": "Q12833001",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q128330F0",
+	  "Message": "Secure Loader Error"
+	},
+	{
+	  "ID": "Q12833003",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "Q12833054",
+	  "Message": "SSD Banks IO Error Between SSD Controller"
+	},
+	{
+	  "ID": "Q12833055",
+	  "Message": "SSD Banks IO Error Between SSD Controller"
+	},
+	{
+	  "ID": "Q12833062",
+	  "Message": "SSD Controller \u003C-\u003E Syscon (Bridge) Data Line Error"
+	},
+	{
+	  "ID": "Q1283300F",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12833098",
+	  "Message": "DDR4 Error (Communication Issue)"
+	},
+	{
+	  "ID": "Q12833027",
+	  "Message": "Power Short 5V Line (F7002)"
+	},
+	{
+	  "ID": "Q12833790",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q12833F90",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q12833090",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q12833002",
+	  "Message": "HDMI IC Problem or Power Failure"
+	},
+	{
+	  "ID": "Q12933200",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12933800",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12C33134",
+	  "Message": "SSD Banks Error"
+	},
+	{
+	  "ID": "Q12C33136",
+	  "Message": "WI-FI or BT Problem or Power Failure"
+	},
+	{
+	  "ID": "Q12C33140",
+	  "Message": "APU Freeze (No Response) - GDDR6 Data Line Issue (Replace)"
+	},
+	{
+	  "ID": "Q12D33402",
+	  "Message": "SSD Banks Error"
+	},
+	{
+	  "ID": "Q12033005",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12033006",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12033103",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 1"
+	},
+	{
+	  "ID": "Q12033203",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 2"
+	},
+	{
+	  "ID": "Q12033303",
+	  "Message": "Known Unknown 789 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q12033002",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12833303",
+	  "Message": "HDMI IC Problem or Data Line Short or Power Failure"
+	},
+	{
+	  "ID": "Q12033004",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12033003",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12033108",
+	  "Message": "Known Unknown 519 (Chip or Data) - Report Findings"
+	},
+	{
+	  "ID": "Q128330FF",
+	  "Message": "Known Unknown 823 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12833018",
+	  "Message": "Known Unknown 846 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q1213342C",
+	  "Message": "Known Unknown 889 - Report Findings"
+	},
+	{
+	  "ID": "Q12133E3C",
+	  "Message": "Known Unknown 908 - Report Findings"
+	},
+	{
+	  "ID": "Q12C3312D",
+	  "Message": "Known Unknown 953 (Data) - Report Findings"
+	},
+	{
+	  "ID": "Q12033CE4",
+	  "Message": "Known Unknown 955 (APU Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12F33FFF",
+	  "Message": "Known Unknown 104 - Report Findings"
+	},
+	{
+	  "ID": "Q12933002",
+	  "Message": "Known Unknown 544 (APU) - Report Findings"
+	},
+	{
+	  "ID": "Q1283329A",
+	  "Message": "Known Unknown 116 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q12833109",
+	  "Message": "Known Unknown 118 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q12833005",
+	  "Message": "Known Unknown 125 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q12533E8B",
+	  "Message": "Known Unknown 163 (Rare) - Report Immediately"
+	},
+	{
+	  "ID": "Q12033040",
+	  "Message": "Known Unknown 370 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12833028",
+	  "Message": "Known Unknown 195 (SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12133203",
+	  "Message": "Known Unknown 203 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q12133303",
+	  "Message": "Known Unknown 238 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q12933303",
+	  "Message": "Known Unknown 251 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q1203300C",
+	  "Message": "Known Unknown 303 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12033020",
+	  "Message": "Known Unknown 386 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q1283301F",
+	  "Message": "Known Unknown 408 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12833022",
+	  "Message": "Known Unknown 412 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12833023",
+	  "Message": "Known Unknown 414 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12833024",
+	  "Message": "Known Unknown 426 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12833580",
+	  "Message": "Known Unknown 444 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12833220",
+	  "Message": "Known Unknown 470 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12833E90",
+	  "Message": "Known Unknown 516 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12233000",
+	  "Message": "Known Unknown 623 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12233A50",
+	  "Message": "Known Unknown 568 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E3361D",
+	  "Message": "Known Unknown 576 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E3391D",
+	  "Message": "Known Unknown 644 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E33C05",
+	  "Message": "Known Unknown 604 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E33D06",
+	  "Message": "Known Unknown 673 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12233116",
+	  "Message": "Known Unknown 637 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E33C06",
+	  "Message": "Known Unknown 653 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q121338E9",
+	  "Message": "Known Unknown 680 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12133F70",
+	  "Message": "Known Unknown 755 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q1213310A",
+	  "Message": "Known Unknown 759 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12C33114",
+	  "Message": "Known Unknown 779 (General Power Failure - SSD/APU Line) - Report Findings"
+	},
+	{
+	  "ID": "Q12833660",
+	  "Message": "Known Unknown 791 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12833471",
+	  "Message": "Known Unknown 811 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12833442",
+	  "Message": "Known Unknown 821 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12833669",
+	  "Message": "Known Unknown 831 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12833608",
+	  "Message": "Known Unknown 841 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "Q12833520",
+	  "Message": "Known Unknown 855 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "Q12F3366F",
+	  "Message": "No Error"
+	},
+	{
+	  "ID": "Q12006661",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12006669",
+	  "Message": "Unexpected Power Cut or Shutdown Failure"
+	},
+	{
+	  "ID": "Q12056660",
+	  "Message": "Known Unknown 370 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12066660",
+	  "Message": "Known Unknown 386 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12806660",
+	  "Message": "Known Unknown 855 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "Q12806664",
+	  "Message": "Known Unknown 426 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q1280666A",
+	  "Message": "Non-Native TPM 2.0 Chip (After APU Init)"
+	},
+	{
+	  "ID": "Q12806661",
+	  "Message": "Known Unknown 811 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12816661",
+	  "Message": "General Power Failure (Periphery, GDDR6, APU, Data Line Short)"
+	},
+	{
+	  "ID": "Q12836660",
+	  "Message": "Secure Loader Error"
+	},
+	{
+	  "ID": "Q12876663",
+	  "Message": "Post Secure Loader Error"
+	},
+	{
+	  "ID": "Q12876661",
+	  "Message": "DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12876664",
+	  "Message": "SSD Banks IO Error Between SSD Controller"
+	},
+	{
+	  "ID": "Q12876665",
+	  "Message": "SSD Banks IO Error Between SSD Controller"
+	},
+	{
+	  "ID": "Q12876662",
+	  "Message": "SSD Controller \u003C-\u003E Syscon (Bridge) Data Line Error"
+	},
+	{
+	  "ID": "Q12896661",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12896663",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q1289666F",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q128B6668",
+	  "Message": "DDR4 Error (Communication Issue)"
+	},
+	{
+	  "ID": "Q128B6667",
+	  "Message": "Power Short 5V Line (F7002)"
+	},
+	{
+	  "ID": "Q128C6660",
+	  "Message": "Known Unknown 516 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q128F6662",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "Q128F6663",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "Q12916660",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12C06664",
+	  "Message": "Known Unknown 779 (General Power Failure - SSD/APU Line) - Report Findings"
+	},
+	{
+	  "ID": "Q12C06666",
+	  "Message": "WI-FI or BT Problem or Power Failure"
+	},
+	{
+	  "ID": "Q12C06660",
+	  "Message": "APU Freeze (No Response) - GDDR6 Data Line Issue (Replace)"
+	},
+	{
+	  "ID": "Q12D06662",
+	  "Message": "SSD Banks Error"
+	},
+	{
+	  "ID": "Q12006665",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12006666",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12026663",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 3"
+	},
+	{
+	  "ID": "Q120C6662",
+	  "Message": "VRM Controller Failure"
+	},
+	{
+	  "ID": "Q12816662",
+	  "Message": "HDMI IC Problem or Power Failure"
+	},
+	{
+	  "ID": "Q12816663",
+	  "Message": "HDMI IC Problem or Data Line Short or Power Failure"
+	},
+	{
+	  "ID": "Q12006664",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12006663",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12006662",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q128D6660",
+	  "Message": "Known Unknown 790 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12086668",
+	  "Message": "Known Unknown 519 (Chip or Data) - Report Findings"
+	},
+	{
+	  "ID": "Q128B666F",
+	  "Message": "Known Unknown 823 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12836668",
+	  "Message": "Known Unknown 846 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q1215666C",
+	  "Message": "Known Unknown 889 - Report Findings"
+	},
+	{
+	  "ID": "Q1210666C",
+	  "Message": "Known Unknown 908 - Report Findings"
+	},
+	{
+	  "ID": "Q12C0666D",
+	  "Message": "Known Unknown 953 (Data) - Report Findings"
+	},
+	{
+	  "ID": "Q12096664",
+	  "Message": "Known Unknown 955 (APU Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12FF666F",
+	  "Message": "No Error"
+	},
+	{
+	  "ID": "Q12916662",
+	  "Message": "Known Unknown 114 (SSD Controller) - Report Findings"
+	},
+	{
+	  "ID": "Q128E666A",
+	  "Message": "Known Unknown 116 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q128E6669",
+	  "Message": "Known Unknown 118 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q128E6665",
+	  "Message": "Known Unknown 125 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q125E666B",
+	  "Message": "Known Unknown 163 (Rare) - Report Immediately"
+	},
+	{
+	  "ID": "Q12906662",
+	  "Message": "Known Unknown 174 (HDMI) - Report Findings"
+	},
+	{
+	  "ID": "Q12806668",
+	  "Message": "Known Unknown 841 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "Q12166663",
+	  "Message": "Known Unknown 238 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q12906663",
+	  "Message": "Known Unknown 251 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q1200666C",
+	  "Message": "Known Unknown 303 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q1280666F",
+	  "Message": "Known Unknown 408 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12806662",
+	  "Message": "Known Unknown 821 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12806663",
+	  "Message": "Known Unknown 414 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q128B6660",
+	  "Message": "Known Unknown 474 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12016663",
+	  "Message": "Known Unknown 525 (APU) - Report Findings"
+	},
+	{
+	  "ID": "Q12926662",
+	  "Message": "Known Unknown 544 (APU) - Report Findings"
+	},
+	{
+	  "ID": "Q12206660",
+	  "Message": "Known Unknown 623 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E0666D",
+	  "Message": "Known Unknown 644 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E06665",
+	  "Message": "Known Unknown 604 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E06666",
+	  "Message": "Known Unknown 673 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12206666",
+	  "Message": "Known Unknown 637 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12126669",
+	  "Message": "Known Unknown 680 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12126660",
+	  "Message": "Known Unknown 755 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q1212666A",
+	  "Message": "Known Unknown 759 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q1281666A",
+	  "Message": "Known Unknown 769 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q120C6663",
+	  "Message": "Known Unknown 789 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q12806669",
+	  "Message": "Known Unknown 831 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12000661",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12000669",
+	  "Message": "Unexpected Power Cut or Shutdown Failure"
+	},
+	{
+	  "ID": "Q12050660",
+	  "Message": "Known Unknown 370 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12060660",
+	  "Message": "Known Unknown 386 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12800660",
+	  "Message": "Kernel Panic Shutdown"
+	},
+	{
+	  "ID": "Q12801660",
+	  "Message": "Known Unknown 444 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12800664",
+	  "Message": "Known Unknown 426 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q1280066A",
+	  "Message": "Non-Native TPM 2.0 Chip (After APU Init)"
+	},
+	{
+	  "ID": "Q12802661",
+	  "Message": "Known Unknown 811 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12810661",
+	  "Message": "General Power Failure (Periphery, GDDR6, APU, Data Line Short)"
+	},
+	{
+	  "ID": "Q12830660",
+	  "Message": "Secure Loader Error"
+	},
+	{
+	  "ID": "Q12870663",
+	  "Message": "Post Secure Loader Error"
+	},
+	{
+	  "ID": "Q12871661",
+	  "Message": "DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12871664",
+	  "Message": "SSD Banks IO Error Between SSD Controller"
+	},
+	{
+	  "ID": "Q12871665",
+	  "Message": "SSD Banks IO Error Between SSD Controller"
+	},
+	{
+	  "ID": "Q12871662",
+	  "Message": "SSD Controller \u003C-\u003E Syscon (Bridge) Data Line Error"
+	},
+	{
+	  "ID": "Q12891661",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12892663",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q1289466F",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q128B0668",
+	  "Message": "DDR4 Error (Communication Issue)"
+	},
+	{
+	  "ID": "Q128B0667",
+	  "Message": "Power Short 5V Line (F7002)"
+	},
+	{
+	  "ID": "Q128C3660",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q128C4660",
+	  "Message": "Known Unknown 516 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q128F0662",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "Q128F0663",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "Q12910660",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12C00664",
+	  "Message": "Known Unknown 779 (General Power Failure - SSD/APU Line) - Report Findings"
+	},
+	{
+	  "ID": "Q12C00666",
+	  "Message": "WI-FI or BT Problem or Power Failure"
+	},
+	{
+	  "ID": "Q12C00660",
+	  "Message": "APU Freeze (No Response) - GDDR6 Data Line Issue (Replace)"
+	},
+	{
+	  "ID": "Q12D00662",
+	  "Message": "SSD Banks Error"
+	},
+	{
+	  "ID": "Q12000665",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12000666",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12020663",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 3"
+	},
+	{
+	  "ID": "Q120C0662",
+	  "Message": "VRM Controller Failure"
+	},
+	{
+	  "ID": "Q12810662",
+	  "Message": "HDMI IC Problem or Power Failure"
+	},
+	{
+	  "ID": "Q12810663",
+	  "Message": "HDMI IC Problem or Data Line Short or Power Failure"
+	},
+	{
+	  "ID": "Q12000664",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12000663",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q12000662",
+	  "Message": "Southbridge Issue - Cannot Read Errors - Wait \u0026 Retry"
+	},
+	{
+	  "ID": "Q128D0660",
+	  "Message": "Known Unknown 790 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12088668",
+	  "Message": "Known Unknown 810 (Chip or Data) - Report Findings"
+	},
+	{
+	  "ID": "Q128B066F",
+	  "Message": "Known Unknown 823 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12830668",
+	  "Message": "Known Unknown 846 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12082668",
+	  "Message": "Known Unknown 866 (Chip or Data - Report Findings"
+	},
+	{
+	  "ID": "Q1215466C",
+	  "Message": "Known Unknown 889 - Report Findings"
+	},
+	{
+	  "ID": "Q1210066C",
+	  "Message": "Known Unknown 908 - Report Findings"
+	},
+	{
+	  "ID": "Q12C0066D",
+	  "Message": "Known Unknown 953 (Data) - Report Findings"
+	},
+	{
+	  "ID": "Q12097664",
+	  "Message": "Known Unknown 955 (APU Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12FFF66F",
+	  "Message": "Known Unknown 104 - Report Findings"
+	},
+	{
+	  "ID": "Q12910662",
+	  "Message": "Known Unknown 114 (SSD Controller) - Report Findings"
+	},
+	{
+	  "ID": "Q128E866A",
+	  "Message": "Known Unknown 116 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q128E0669",
+	  "Message": "Known Unknown 118 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q128E0665",
+	  "Message": "Known Unknown 125 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q125E466B",
+	  "Message": "Known Unknown 163 (Rare) - Report Immediately"
+	},
+	{
+	  "ID": "Q12900662",
+	  "Message": "Known Unknown 174 (HDMI) - Report Findings"
+	},
+	{
+	  "ID": "Q12801668",
+	  "Message": "Known Unknown 195 (SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12160663",
+	  "Message": "Known Unknown 238 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q12900663",
+	  "Message": "Known Unknown 251 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q1200066C",
+	  "Message": "Known Unknown 303 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q1280066F",
+	  "Message": "Known Unknown 408 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12800662",
+	  "Message": "Known Unknown 412 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12800663",
+	  "Message": "Known Unknown 414 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q128B0660",
+	  "Message": "Known Unknown 474 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12085668",
+	  "Message": "Known Unknown 519 (Chip or Data) - Report Findings"
+	},
+	{
+	  "ID": "Q12010663",
+	  "Message": "Known Unknown 525 (APU) - Report Findings"
+	},
+	{
+	  "ID": "Q12920662",
+	  "Message": "Known Unknown 544 (APU) - Report Findings"
+	},
+	{
+	  "ID": "Q12200660",
+	  "Message": "Known Unknown 623 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12201660",
+	  "Message": "Known Unknown 568 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E0066D",
+	  "Message": "Known Unknown 576 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E0166D",
+	  "Message": "Known Unknown 644 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E01665",
+	  "Message": "Known Unknown 604 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E01666",
+	  "Message": "Known Unknown 673 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12200666",
+	  "Message": "Known Unknown 637 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12121669",
+	  "Message": "Known Unknown 680 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12121660",
+	  "Message": "Known Unknown 755 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q1212266A",
+	  "Message": "Known Unknown 759 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q1281066A",
+	  "Message": "Known Unknown 769 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q120C0663",
+	  "Message": "Known Unknown 789 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q12802662",
+	  "Message": "Known Unknown 821 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12802699",
+	  "Message": "Known Unknown 831 (General Power Failure - DDR/SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12801699",
+	  "Message": "Known Unknown 841 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "Q12FFF699",
+	  "Message": "No Error"
+	},
+	{
+	  "ID": "Q12000099",
+	  "Message": "Known Unknown 303 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12050099",
+	  "Message": "Known Unknown 370 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12060099",
+	  "Message": "Known Unknown 386 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12800099",
+	  "Message": "Known Unknown 426 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12801599",
+	  "Message": "Known Unknown 855 (Kernel) - Report Findings"
+	},
+	{
+	  "ID": "Q12802099",
+	  "Message": "SSD Controller (Co-Processor) \u003C-\u003E APU Data Line Error"
+	},
+	{
+	  "ID": "Q12810099",
+	  "Message": "Known Unknown 769 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q12830099",
+	  "Message": "Known Unknown 846 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12870099",
+	  "Message": "Post Secure Loader Error"
+	},
+	{
+	  "ID": "Q12871099",
+	  "Message": "SSD Controller \u003C-\u003E Syscon (Bridge) Data Line Error"
+	},
+	{
+	  "ID": "Q12891099",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12892099",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12894099",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q128B0099",
+	  "Message": "Known Unknown 474 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q128C3799",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q128C4F99",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q128C3F99",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q128C3099",
+	  "Message": "Power Failure - PWM or Unspecific"
+	},
+	{
+	  "ID": "Q128F0099",
+	  "Message": "TPM 2.0 chip or Power Failure"
+	},
+	{
+	  "ID": "Q12910299",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12910899",
+	  "Message": "SSD Controller or DDR4 Error (Power Failure or Short Circuit)"
+	},
+	{
+	  "ID": "Q12C00199",
+	  "Message": "Known Unknown 779 (General Power Failure - SSD/APU Line) - Report Findings"
+	},
+	{
+	  "ID": "Q12D00499",
+	  "Message": "SSD Banks Error"
+	},
+	{
+	  "ID": "Q12020199",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 1"
+	},
+	{
+	  "ID": "Q12020299",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 2"
+	},
+	{
+	  "ID": "Q12020399",
+	  "Message": "APU Not Responding - Trying Init or Reboot - 3"
+	},
+	{
+	  "ID": "Q120C0099",
+	  "Message": "VRM Controller Failure"
+	},
+	{
+	  "ID": "Q12810399",
+	  "Message": "HDMI IC Problem or Data Line Short or Power Failure"
+	},
+	{
+	  "ID": "Q128D0099",
+	  "Message": "Known Unknown 790 (Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12088199",
+	  "Message": "Known Unknown 810 (Chip or Data) - Report Findings"
+	},
+	{
+	  "ID": "Q12082199",
+	  "Message": "Known Unknown 866 (Chip or Data - Report Findings"
+	},
+	{
+	  "ID": "Q12154499",
+	  "Message": "Known Unknown 889 - Report Findings"
+	},
+	{
+	  "ID": "Q12100E99",
+	  "Message": "Known Unknown 908 - Report Findings"
+	},
+	{
+	  "ID": "Q12097C99",
+	  "Message": "Known Unknown 955 (APU Power) - Report Findings"
+	},
+	{
+	  "ID": "Q12FFFF99",
+	  "Message": "No Error"
+	},
+	{
+	  "ID": "Q12910099",
+	  "Message": "Known Unknown 114 (SSD Controller) - Report Findings"
+	},
+	{
+	  "ID": "Q128E8299",
+	  "Message": "Known Unknown 116 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q128E0199",
+	  "Message": "Known Unknown 118 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q128E0099",
+	  "Message": "Known Unknown 125 (TPM) - Report Findings"
+	},
+	{
+	  "ID": "Q125E4E99",
+	  "Message": "Known Unknown 163 (Rare) - Report Immediately"
+	},
+	{
+	  "ID": "Q12900099",
+	  "Message": "Known Unknown 174 (HDMI) - Report Findings"
+	},
+	{
+	  "ID": "Q12801099",
+	  "Message": "Known Unknown 195 (SSD) - Report Findings"
+	},
+	{
+	  "ID": "Q12160299",
+	  "Message": "Known Unknown 203 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q12160399",
+	  "Message": "Known Unknown 238 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q12900399",
+	  "Message": "Known Unknown 251 (HDMI-\u003EAPU) - Report Findings"
+	},
+	{
+	  "ID": "Q12802299",
+	  "Message": "Known Unknown 470 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q128C4E99",
+	  "Message": "Known Unknown 516 (Power or Short) - Report Findings"
+	},
+	{
+	  "ID": "Q12085199",
+	  "Message": "Known Unknown 519 (Chip or Data) - Report Findings"
+	},
+	{
+	  "ID": "Q12010399",
+	  "Message": "Known Unknown 525 (APU) - Report Findings"
+	},
+	{
+	  "ID": "Q12920099",
+	  "Message": "Known Unknown 544 (APU) - Report Findings"
+	},
+	{
+	  "ID": "Q12200099",
+	  "Message": "Known Unknown 623 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12201A99",
+	  "Message": "Known Unknown 568 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E00699",
+	  "Message": "Known Unknown 576 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E01999",
+	  "Message": "Known Unknown 644 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E01C99",
+	  "Message": "Known Unknown 653 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12E01D99",
+	  "Message": "Known Unknown 673 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12200199",
+	  "Message": "Known Unknown 637 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12121899",
+	  "Message": "Known Unknown 680 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12121F99",
+	  "Message": "Known Unknown 755 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q12122199",
+	  "Message": "Known Unknown 759 (Rare - Report Immediately)"
+	},
+	{
+	  "ID": "Q120C0399",
+	  "Message": "Known Unknown 789 (General Power Failure) - Report Findings"
+	},
+	{
+	  "ID": "Q12802499",
+	  "Message": "Known Unknown 821 (General Power Failure - DDR/SSD) - Report Findings"
+	}
+	]
+  }
+}
